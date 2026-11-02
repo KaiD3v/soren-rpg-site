@@ -11,6 +11,7 @@ const DRAWERS = [
   { to: "/castas", folio: "III", label: "Casa Vaelor" },
   { to: "/mapas", folio: "IV", label: "Atlas" },
   { to: "/diario", folio: "V", label: "Diário" },
+  { to: "/compendio", folio: "VI", label: "Compêndio" },
 ];
 
 const isOpen = (drawer, path) => (drawer.to === "/" ? path === "/" : path.startsWith(drawer.to));

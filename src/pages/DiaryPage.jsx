@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { PageTitle } from "../components/Ornaments.jsx";
 import { ENTRIES } from "../lib/diary.js";
 import { play } from "../lib/sound.js";
@@ -156,8 +156,18 @@ export default function DiaryPage() {
 }
 
 function Flow({ entry, column }) {
+  const navigate = useNavigate();
+  // Link para um verbete do compêndio: navega sem recarregar e sem virar a folha (o clique na folha vira a página).
+  const followLink = (e) => {
+    const link = e.target.closest("a.verbete-link");
+    if (!link) return;
+    e.preventDefault();
+    e.stopPropagation();
+    navigate(link.getAttribute("href"));
+  };
+
   return (
-    <div className="fluxo" style={{ transform: `translateX(calc(${-column} * (100% + ${COLUMN_GAP}px)))` }}>
+    <div className="fluxo" onClick={followLink} style={{ transform: `translateX(calc(${-column} * (100% + ${COLUMN_GAP}px)))` }}>
       <h2>{entry.title}</h2>
       <p className="meta-pagina">
         {[entry.session, formatDate(entry.date)].filter(Boolean).join(", ")}

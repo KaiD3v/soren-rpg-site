@@ -10,6 +10,7 @@ import StoryPage from "./pages/StoryPage.jsx";
 import CastesPage from "./pages/CastesPage.jsx";
 import MapsPage from "./pages/MapsPage.jsx";
 import DiaryPage from "./pages/DiaryPage.jsx";
+import CompendiumPage from "./pages/CompendiumPage.jsx";
 
 const VEIL_SWAP_MS = 480; // a lente troca quando o véu cobre a tela (pico da animação .veu-luz)
 const VEIL_END_MS = 1150;
@@ -87,6 +88,7 @@ export default function App() {
             <Route path="/castas" element={<CastesPage />} />
             <Route path="/mapas" element={<MapsPage openLightbox={openLightbox} />} />
             <Route path="/diario/:slug?" element={<DiaryPage />} />
+            <Route path="/compendio/:secao?/:slug?" element={<CompendiumPage truthMode={truthMode} />} />
             <Route path="*" element={home} />
           </Routes>
         </main>

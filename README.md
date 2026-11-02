@@ -11,10 +11,11 @@ npm test        # testes do frontmatter e da tinta invisível
 
 ## Estrutura
 
-- `src/pages/` uma página por seção (Matriz, Crônica, Casa Vaelor, Atlas, Diário)
+- `src/pages/` uma página por seção (Matriz, Crônica, Casa Vaelor, Atlas, Diário, Compêndio)
 - `src/data/` textos da lore (personagens, castas, atos, mapas)
 - `src/components/` barra superior, pingente do colar, partículas de fundo, ornamentos e lightbox
 - `src/diario/` as entradas do diário, uma por arquivo `.md`
+- `src/compendio/<seção>/` os verbetes do compêndio (Liber Alkahest), um por arquivo `.md`
 - `public/assets/` imagens
 - `public/sons/` efeitos sonoros e `public/musica/` os temas (House of Ashen Vows na Máscara, Lost Lullaby na Ressonância), todos gerados no ElevenLabs; volumes e reprodução em `src/lib/sound.js`
 
@@ -40,3 +41,49 @@ O que ele escreve e ||o que ele não admite|| fica na mesma frase.
 - `||texto||` é tinta invisível: aparece rasurado na Máscara e só se revela ao tocar o colar.
 - O diário é paginado automaticamente; uma entrada longa ocupa quantas páginas precisar.
 - Imagens: coloque o arquivo em `public/assets/diario/` e escreva `![legenda](/assets/diario/arquivo.webp)`. Ela aparece como esboço colado na página, com a legenda embaixo, sempre inteira numa página só (no máximo ~55% da altura).
+
+## Escrever no Compêndio (Liber Alkahest)
+
+Crie `src/compendio/<seção>/<slug>.md`, com `<seção>` sendo `alquimia`, `pessoas`, `criaturas` ou `pacto`. A URL fica `/compendio/<seção>/<slug>`.
+
+```md
+---
+title: Raiz de Mandrágora
+tipo: Planta
+raridade: Rara
+efeito: Sono profundo
+conhecimento: 2
+imagem: /assets/compendio/mandragora.webp
+ver: solvente-alkahest, diabrete
+visto: sessao-03
+---
+
+Anotações do Soren. Aceita ||tinta invisível||, ![esboços](/assets/...) e [[links-para-verbetes]].
+```
+
+Campos da ficha por seção (os que faltarem aparecem como borrão de tinta, ou seja, "Soren ainda não descobriu"):
+
+| Seção | Campos |
+|---|---|
+| alquimia | `tipo`, `raridade`, `efeito`, `ingredientes`, `preparo`, `onde` |
+| pessoas | `relacao`, `faccao`, `situacao`, `onde`, mais `casta` (Éter, Mercúrio, Enxofre, Cinza), `alma` (0 a 100), `veredito` (frase na Máscara) e `sentimento` (frase na Ressonância) |
+| criaturas | `tipo`, `habitat`, `perigo`, `fraquezas`, `partes` |
+| pacto | `status` (`confirmada`, `hipótese`, `descartada`), `fonte` |
+
+Comuns a todas:
+- `conhecimento`: de 0 a 4, aparece como ●●○○.
+- `imagem`: a gravura do verbete.
+- `ver`: slugs de outros verbetes, separados por vírgula.
+- `visto`: slugs de entradas do diário, separados por vírgula.
+- `selado: true`: a página fica lacrada com cera e só abre na Ressonância.
+
+`[[slug]]` (ou `[[slug|texto]]`) vira link para o verbete, inclusive dentro dos campos da ficha e no diário. Se o verbete ainda não existe, aparece riscado como "ainda não escrito".
+
+### Quadro de investigação (O Pacto)
+
+O link "Desdobrar o quadro de investigação", no índice de O Pacto, abre `/compendio/pacto/quadro`.
+- Cada verbete do Pacto vira um cartão preso com alfinete de cera, marcado pelo `status`.
+- Um fio liga a pista a cada verbete do campo `ver`. Verbetes de outras seções entram como cartões de evidência.
+- Fios de pistas descartadas ficam apagados. Na Ressonância, os fios viram luz.
+- Os cartões se distribuem sozinhos numa elipse. Para fixar a posição, use `quadro: x, y` (em %, por exemplo `quadro: 20, 35`).
+- `quadro` é um nome reservado: não crie um verbete com esse slug no Pacto.

@@ -27,6 +27,28 @@ const sketch = {
   },
 };
 
-const marked = new Marked({ extensions: [invisibleInk], renderer: sketch });
+// [[slug]] ou [[slug|texto]] aponta para um verbete do compêndio. Aqui vira um marcador;
+// linkVerbetes() troca pelo link de verdade (ou por "ainda não escrito") quando os verbetes são conhecidos.
+const verbeteLink = {
+  name: "verbete",
+  level: "inline",
+  start: (src) => src.indexOf("[["),
+  tokenizer(src) {
+    const match = /^\[\[([a-z0-9-]+)(?:\|([^\]]+))?\]\]/.exec(src);
+    if (match) return { type: "verbete", raw: match[0], slug: match[1], text: match[2] ?? "" };
+  },
+  renderer: ({ slug, text }) => `<a class="verbete-link" data-verbete="${slug}">${escape(text)}</a>`,
+};
+
+const marked = new Marked({ extensions: [invisibleInk, verbeteLink], renderer: sketch });
 
 export const renderMarkdown = (md) => marked.parse(md);
+export const renderInline = (md) => marked.parseInline(md);
+
+/** lookup(slug) -> { href, title } | undefined */
+export const linkVerbetes = (html, lookup) =>
+  html.replace(/<a class="verbete-link" data-verbete="([a-z0-9-]+)">([^<]*)<\/a>/g, (_, slug, text) => {
+    const target = lookup(slug);
+    if (!target) return `<span class="verbete-ausente" title="Verbete ainda não escrito">${text || slug}</span>`;
+    return `<a class="verbete-link" href="${target.href}">${text || escape(target.title)}</a>`;
+  });
