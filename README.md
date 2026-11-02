@@ -77,6 +77,14 @@ Comuns a todas:
 - `visto`: slugs de entradas do diário, separados por vírgula.
 - `selado: true`: a página fica lacrada com cera e só abre na Ressonância.
 
+Com `imagem`, o verbete vira uma **prancha**: a gravura ocupa a página da esquerda e a ficha vai para a direita, junto das anotações.
+
+Para fazer uma versão "desenho a lápis" de uma arte existente, sobre o pergaminho do site (precisa de Python com Pillow e NumPy):
+
+```bash
+python tools/esboco_lapis.py public/assets/villain.jpg public/assets/textura-pergaminho.webp public/assets/compendio/lazare-esboco.webp
+```
+
 `[[slug]]` (ou `[[slug|texto]]`) vira link para o verbete, inclusive dentro dos campos da ficha e no diário. Se o verbete ainda não existe, aparece riscado como "ainda não escrito".
 
 ### Quadro de investigação (O Pacto)

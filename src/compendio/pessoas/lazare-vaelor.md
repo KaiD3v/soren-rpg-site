@@ -9,6 +9,7 @@ alma: 100
 veredito: Uma alma abissal desperdiçada em vaidade. Um obstáculo técnico, nada além disso.
 sentimento: Foi o único pai que eu tive por dez anos. É isso que torna tudo insuportável.
 conhecimento: 3
+imagem: /assets/compendio/lazare-esboco.webp
 visto: prologo
 ver: notas-do-projeto-quimera, a-entidade-sem-nome
 ---

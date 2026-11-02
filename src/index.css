@@ -1047,7 +1047,7 @@ body::after {
 .tomo-pagina {
   min-height: 0;
   overflow-y: auto;
-  padding: 1.6rem 2rem 1.8rem;
+  padding: 1.6rem 2rem 1.5rem;
   background: #d9c9a3 url("/assets/textura-pergaminho.webp") 0 0 / 360px;
   color: #2b1d12;
   font-size: 16px;
@@ -1110,6 +1110,24 @@ body::after {
   .tomo-aba { width: auto; flex-direction: row; padding: 0.35rem 0.55rem; border: 1px solid rgb(var(--line) / 0.7); border-radius: 6px; }
   .tomo-aba-nome { writing-mode: horizontal-tb; }
   .tomo-aba:hover, .tomo-aba.aberta { transform: none; }
+}
+
+/* Prancha: a gravura ocupa o espaço livre da página da esquerda */
+.prancha {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.8rem 0 0;
+}
+
+.prancha img {
+  max-height: 70vh;
+}
+
+@media (min-width: 1024px) and (min-height: 640px) {
+  .prancha img { max-height: 100%; }
 }
 
 .verbete-titulo {
@@ -1180,6 +1198,20 @@ body::after {
 
 .ficha dd { margin: 0; }
 
+/* Ficha compacta (verbete com prancha): duas colunas, rótulo acima do valor */
+.ficha.compacta {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.35rem 1rem;
+}
+
+.ficha.compacta > div {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  padding-bottom: 0.3rem;
+}
+
+.ficha.compacta dt { font-size: 0.8rem; }
+
 /* Campo que Soren ainda não descobriu: borrão de tinta */
 .borrao {
   color: transparent;
@@ -1192,8 +1224,8 @@ body::after {
 .veredito {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  padding: 0.7rem;
+  gap: 0.8rem;
+  padding: 0.45rem 0.6rem;
   border: 1px solid #6a563666;
   background: #2b1d120d;
 }
@@ -1213,8 +1245,8 @@ body::after {
 }
 
 .tomo-rodape {
-  margin-top: 1.2em;
-  padding-top: 0.6em;
+  margin-top: 0.8em;
+  padding-top: 0.45em;
   border-top: 1px dotted #6a563666;
   font-size: 0.9em;
 }

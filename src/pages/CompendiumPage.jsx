@@ -143,102 +143,130 @@ function IndexSpread({ section }) {
 // "Éter", "Mercúrio"... -> dados da casta, para o veredito de alma da seção Pessoas.
 const casteOf = (name) => name && CASTES.find((c) => c.name.toLowerCase().includes(name.toLowerCase()));
 
+// Com gravura, o verbete vira uma prancha de tratado: o desenho ocupa a página da esquerda
+// e a ficha vai para a direita, junto das anotações. Sem gravura, a ficha fica à esquerda.
 function EntrySpread({ entry, section, truthMode }) {
   const hidden = entry.sealed && !truthMode;
+  const plate = entry.imagem && !hidden;
   const caste = casteOf(entry.casta);
   const seeAlso = list(entry.ver);
   const seenIn = list(entry.visto)
     .map((s) => DIARY.find((d) => d.slug === s))
     .filter(Boolean);
 
+  const backLink = (
+    <Link to={`/compendio/${section.id}`} className="tomo-voltar">
+      ← Índice de {section.label}
+    </Link>
+  );
+
+  const heading = (
+    <>
+      <h2 className={`verbete-titulo mt-2 ${plate ? "text-center" : ""}`}>{entry.title}</h2>
+      <p className={`tomo-meta mt-1 flex items-center gap-3 ${plate ? "justify-center" : ""}`}>
+        <span>{section.label}</span>
+        <Knowledge level={entry.knowledge} />
+      </p>
+    </>
+  );
+
+  const facts = (
+    <>
+      <dl className={`ficha ${plate ? "compacta" : "mt-4"}`}>
+        {section.fields.map(([key, label]) => (
+          <div key={key}>
+            <dt>{label}</dt>
+            {entry[key] && !hidden ? (
+              <dd dangerouslySetInnerHTML={{ __html: fieldHtml(entry[key]) }} />
+            ) : (
+              <dd className="borrao" aria-label="Desconhecido">desconhecido</dd>
+            )}
+          </div>
+        ))}
+      </dl>
+
+      {section.id === "pessoas" && (entry.casta || entry.alma) && (
+        <div className="veredito mt-3">
+          {caste && <img src={caste.emblem} alt="" className="w-10 h-10 rounded-full shrink-0" />}
+          <div>
+            <div className="tomo-meta">Veredito da alma</div>
+            <div>
+              {entry.casta && `Casta ${caste ? caste.name.split(" (")[0].replace("Casta ", "") : entry.casta}`}
+              {entry.alma && `, densidade ${entry.alma}%`}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+
+  const notes = hidden ? (
+    <div className="h-full grid place-items-center text-center">
+      <div>
+        <div className="cera mx-auto w-20 h-20 grid place-items-center text-3xl">🜏</div>
+        <p className="italic mt-4">Página lacrada. O selo só cede ao calor do colar.</p>
+      </div>
+    </div>
+  ) : (
+    <>
+      {section.id === "pessoas" && (entry.veredito || entry.sentimento) && (
+        <blockquote className="mb-3">{truthMode ? entry.sentimento ?? entry.veredito : entry.veredito}</blockquote>
+      )}
+      <div dangerouslySetInnerHTML={{ __html: entry.html }} />
+
+      {seeAlso.length > 0 && (
+        <p className="tomo-rodape">
+          Ver também:{" "}
+          {seeAlso.map((s, i) => (
+            <span key={s}>
+              {i > 0 && ", "}
+              <span dangerouslySetInnerHTML={{ __html: fieldHtml(`[[${s}]]`) }} />
+            </span>
+          ))}
+        </p>
+      )}
+      {seenIn.length > 0 && (
+        <p className="tomo-rodape">
+          Registrado em:{" "}
+          {seenIn.map((d, i) => (
+            <span key={d.slug}>
+              {i > 0 && ", "}
+              <Link to={`/diario/${d.slug}`} className="verbete-link">
+                {d.session}, {d.title}
+              </Link>
+            </span>
+          ))}
+        </p>
+      )}
+    </>
+  );
+
+  if (plate) {
+    return (
+      <>
+        <section className="tomo-pagina esquerda verbete flex flex-col">
+          {backLink}
+          <span className="esboco prancha">
+            <img src={entry.imagem.replace(/^\/public\//, "/")} alt={entry.title} />
+          </span>
+          {heading}
+        </section>
+        <section className="tomo-pagina direita verbete text-[15px]">
+          {facts}
+          <div className="mt-3">{notes}</div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <section className="tomo-pagina esquerda verbete">
-        <Link to={`/compendio/${section.id}`} className="tomo-voltar">
-          ← Índice de {section.label}
-        </Link>
-
-        {entry.imagem && !hidden && (
-          <span className="esboco">
-            <img src={entry.imagem.replace(/^\/public\//, "/")} alt={entry.title} />
-          </span>
-        )}
-
-        <h2 className="verbete-titulo mt-2">{entry.title}</h2>
-        <p className="tomo-meta mt-1 flex items-center gap-3">
-          <span>{section.label}</span>
-          <Knowledge level={entry.knowledge} />
-        </p>
-
-        <dl className="ficha mt-4">
-          {section.fields.map(([key, label]) => (
-            <div key={key}>
-              <dt>{label}</dt>
-              {entry[key] && !hidden ? (
-                <dd dangerouslySetInnerHTML={{ __html: fieldHtml(entry[key]) }} />
-              ) : (
-                <dd className="borrao" aria-label="Desconhecido">desconhecido</dd>
-              )}
-            </div>
-          ))}
-        </dl>
-
-        {section.id === "pessoas" && (entry.casta || entry.alma) && (
-          <div className="veredito mt-5">
-            {caste && <img src={caste.emblem} alt="" className="w-14 h-14 rounded-full shrink-0" />}
-            <div>
-              <div className="tomo-meta">Veredito da alma</div>
-              <div>
-                {entry.casta && `Casta ${caste ? caste.name.split(" (")[0].replace("Casta ", "") : entry.casta}`}
-                {entry.alma && `, densidade ${entry.alma}%`}
-              </div>
-            </div>
-          </div>
-        )}
+        {backLink}
+        {heading}
+        {facts}
       </section>
-
-      <section className="tomo-pagina direita verbete">
-        {hidden ? (
-          <div className="h-full grid place-items-center text-center">
-            <div>
-              <div className="cera mx-auto w-20 h-20 grid place-items-center text-3xl">🜏</div>
-              <p className="italic mt-4">Página lacrada. O selo só cede ao calor do colar.</p>
-            </div>
-          </div>
-        ) : (
-          <>
-            {section.id === "pessoas" && (entry.veredito || entry.sentimento) && (
-              <blockquote className="mb-4">{truthMode ? entry.sentimento ?? entry.veredito : entry.veredito}</blockquote>
-            )}
-            <div dangerouslySetInnerHTML={{ __html: entry.html }} />
-
-            {seeAlso.length > 0 && (
-              <p className="tomo-rodape">
-                Ver também:{" "}
-                {seeAlso.map((s, i) => (
-                  <span key={s}>
-                    {i > 0 && ", "}
-                    <span dangerouslySetInnerHTML={{ __html: fieldHtml(`[[${s}]]`) }} />
-                  </span>
-                ))}
-              </p>
-            )}
-            {seenIn.length > 0 && (
-              <p className="tomo-rodape">
-                Registrado em:{" "}
-                {seenIn.map((d, i) => (
-                  <span key={d.slug}>
-                    {i > 0 && ", "}
-                    <Link to={`/diario/${d.slug}`} className="verbete-link">
-                      {d.session}, {d.title}
-                    </Link>
-                  </span>
-                ))}
-              </p>
-            )}
-          </>
-        )}
-      </section>
+      <section className="tomo-pagina direita verbete">{notes}</section>
     </>
   );
 }
