@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+
+/* ==========================================================================
+   DOSSIÊ INTERATIVO: SOREN [VAELOR] ALKAHEST
+   Estética: Grimório de Alquimia Anímica & Astrolábio do Arcanum
+   ========================================================================== */
+
+:root {
+  --bg-abyss: #090a0f;
+  --bg-surface: #12141d;
+  --bg-elevated: #191c28;
+  --bg-glass: rgba(18, 20, 29, 0.86);
+  
+  --text-primary: #ece8df;
+  --text-secondary: #a39e93;
+  --text-muted: #6c6860;
+
+  /* Tema Ego Racional (Âmbar / Brasa Alquímica / Sangue) */
+  --accent-main: #e58e26;
+  --accent-glow: rgba(229, 142, 38, 0.35);
+  --accent-crimson: #c23616;
+  
+  /* Tema Verdade da Alma (Cristal Azul do Colar de Elian e Lyra) */
+  --soul-blue: #38bdf8;
+  --soul-glow: rgba(56, 189, 248, 0.35);
+
+  --border-subtle: rgba(229, 142, 38, 0.22);
+  --border-strong: rgba(229, 142, 38, 0.55);
+
+  --font-display: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+}
+
+body.soul-truth-mode {
+  --accent-main: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.35);
+  --border-subtle: rgba(56, 189, 248, 0.25);
+  --border-strong: rgba(56, 189, 248, 0.65);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-abyss);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.4s ease;
+}
+
+.alchemical-backdrop {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, var(--accent-glow) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(194, 54, 22, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #07080c 0%, #0d1018 50%, #07080c 100%);
+  opacity: 0.9;
+  transition: background 0.6s ease;
+}
+
+.slashed-surname {
+  position: relative;
+  display: inline-block;
+  color: var(--text-muted);
+  opacity: 0.72;
+  margin: 0 0.25rem;
+}
+
+.slashed-surname::after {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  top: 52%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ef4444 15%, #dc2626 85%, transparent);
+  transform: rotate(-7deg);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+}
+
+.slashed-surname::before {
+  content: "";
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  top: 46%;
+  height: 1.5px;
+  background: rgba(255, 120, 120, 0.7);
+  transform: rotate(4deg);
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse-slow {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.ring-spin {
+  animation: spin-slow 48s linear infinite;
+  transform-origin: center;
+}
+
+.ring-spin-reverse {
+  animation: spin-reverse-slow 34s linear infinite;
+  transform-origin: center;
+}
+
+.arcane-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 35px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+}
+
+.arcane-card:hover {
+  border-color: var(--border-strong);
+}
+
+.orbit-node {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orbit-node:hover {
+  transform: translate(-50%, -50%) scale(1.09);
+}
+
+.orbit-node.active-node .node-avatar-ring {
+  border-color: var(--accent-main);
+  box-shadow: 0 0 22px var(--accent-main), inset 0 0 12px var(--accent-main);
+  transform: scale(1.06);
+}
+
+.orbit-node.active-node .node-label {
+  background: var(--accent-main);
+  color: #090a0f;
+  font-weight: 700;
+  border-color: var(--accent-main);
+}
+
+.connection-line {
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+  transition: all 0.4s ease;
+}
+
+.connection-line.active-line {
+  stroke: var(--accent-main);
+  stroke-width: 2.8;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 6px var(--accent-main));
+}
+
+.portrait-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+}
+
+.portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 40px rgba(9, 10, 15, 0.85);
+  pointer-events: none;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portrait-frame:hover .portrait-img {
+  transform: scale(1.04);
+}
+
+.soul-bar-track {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.soul-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-crimson), var(--accent-main));
+  box-shadow: 0 0 12px var(--accent-main);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+}
+
+body.soul-truth-mode .soul-bar-fill {
+  background: linear-gradient(90deg, #0284c7, #38bdf8, #f59e0b);
+}
+
+.nav-tab {
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+}
+
+.nav-tab:hover {
+  color: var(--text-primary);
+}
+
+.nav-tab.active-tab {
+  border-bottom-color: var(--accent-main);
+  color: var(--accent-main);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262b3d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-main);
+}
+
+/* Elementos gerados pelo Markdown do Diário (o preflight do Tailwind zera estes estilos) */
+.chapter-prose h2,
+.chapter-prose h3 {
+  font-weight: 700;
+  color: #f5f5f4;
+  padding-top: 0.5rem;
+}
+
+.chapter-prose h2 { font-size: 1.5rem; }
+.chapter-prose h3 { font-size: 1.25rem; }
+
+.chapter-prose blockquote {
+  font-style: italic;
+  border-left: 4px solid var(--accent-main);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.chapter-prose ul { list-style: disc; padding-left: 1.5rem; }
+.chapter-prose ol { list-style: decimal; padding-left: 1.5rem; }
+
+.chapter-prose hr { border-color: rgba(255, 255, 255, 0.1); }
+
+.chapter-prose a {
+  color: var(--accent-main);
+  text-decoration: underline;
+}
+
+/* No original o CDN do Tailwind era injetado depois do style.css: utilitários vencem. */
+@tailwind utilities;
