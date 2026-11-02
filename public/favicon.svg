@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Sinete de cera com o sigilo de Soren (triângulo sobre cruz dupla) em latão -->
+  <defs>
+    <radialGradient id="cera" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#d4452f" />
+      <stop offset="70%" stop-color="#6e120a" />
+      <stop offset="100%" stop-color="#3a0805" />
+    </radialGradient>
+  </defs>
+  <path d="M32 2c9 1 16 3 22 9s8 13 8 21-3 15-9 21-13 9-21 9-16-2-22-8S2 41 2 32s3-16 9-22 12-8 21-8z" fill="url(#cera)" />
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#2a0503" stroke-opacity="0.55" stroke-width="2" />
+  <g fill="none" stroke="#e2bd78" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 12 46 33H18Z" />
+    <path d="M32 33v20M23 41h18M25 48h14" />
+  </g>
+</svg>
