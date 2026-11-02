@@ -1,6 +1,7 @@
 export const CASTES = [
   {
     tier: "I",
+    emblem: "/assets/casta-eter.webp",
     name: "Casta do Éter (Os Soberanos)",
     symbol: "🜚",
     color: "#eab308",
@@ -11,6 +12,7 @@ export const CASTES = [
   },
   {
     tier: "II",
+    emblem: "/assets/casta-mercurio.webp",
     name: "Casta do Mercúrio (Os Artífices)",
     symbol: "☿",
     color: "#e58e26",
@@ -21,6 +23,7 @@ export const CASTES = [
   },
   {
     tier: "III",
+    emblem: "/assets/casta-enxofre.webp",
     name: "Casta do Enxofre (Os Catalisadores)",
     symbol: "🜍",
     color: "#38bdf8",
@@ -31,6 +34,7 @@ export const CASTES = [
   },
   {
     tier: "IV",
+    emblem: "/assets/casta-cinza.webp",
     name: "Casta da Cinza (Os Vazios / Insetos)",
     symbol: "ef",
     color: "#71717a",

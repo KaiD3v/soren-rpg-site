@@ -3,7 +3,6 @@ session: Prólogo
 date: 2026-11-01
 title: Por Que Escrevo
 location: Em Exílio pelo Mundo
-summary: Uma anotação seca sobre o propósito deste caderno. Nada de sentimentalismo.
 ---
 
 Registrar é um hábito de laboratório. Elian anotava cada reagente, cada temperatura, cada erro — e eu herdei o vício, não a sentimentalidade.
@@ -14,4 +13,4 @@ Este caderno não é um *diário*. É um registro técnico de campo: com quem cr
 
 ---
 
-*Nota à margem, escrita a lápis e depois rabiscada:* o colar esquentou outra vez esta noite.
+*Nota à margem:* ||o colar esquentou outra vez esta noite. Pensei na voz da minha mãe.||

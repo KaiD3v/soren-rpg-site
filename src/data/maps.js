@@ -2,7 +2,7 @@
 export const MAPS = [
   {
     id: "full",
-    code: "MAPA GERAL • CORTE VERTICAL",
+    code: "Mapa geral, corte vertical",
     title: "Cidadela da Casa Vaelor (Visão Completa)",
     subtitle: "Corte Arquitetônico dos 4 Níveis da Montanha do Crisol",
     scale: "Escala Vertical: 600m de Altitude • 4 Estratificações de Casta",
@@ -51,7 +51,7 @@ export const MAPS = [
   },
   {
     id: "ether",
-    code: "PLANTA DE ÁREA 01 • TOPO",
+    code: "Planta 1, topo",
     title: "Santuário do Pico do Éter (Alta Casta)",
     subtitle: "Salão do Trono, Observatório de Lazare e a Ala Leste Colapsada",
     scale: "Planta Tática (1 Quadrado = 1,5m / 5ft) • Acesso Exclusivo Casta do Éter",
@@ -96,7 +96,7 @@ export const MAPS = [
   },
   {
     id: "mercury",
-    code: "PLANTA DE ÁREA 02 • NÍVEL MÉDIO",
+    code: "Planta 2, nível médio",
     title: "Salões de Mercúrio & Grande Biblioteca",
     subtitle: "Claustros Acadêmicos, Destilarias e os Arquivos Restritos",
     scale: "Planta Tática (1 Quadrado = 3m / 10ft) • Casta do Mercúrio",
@@ -149,7 +149,7 @@ export const MAPS = [
   },
   {
     id: "sulfur",
-    code: "PLANTA DE ÁREA 03 • SUBTERRÂNEO",
+    code: "Planta 3, subterrâneo",
     title: "Laboratórios de Enxofre & Cofre do Pacto Quimera",
     subtitle: "O Berço de Elian e Lyra Conectado à Câmara de Sacrifício Infernal",
     scale: "Planta de Masmorra (1 Quadrado = 1,5m / 5ft) • Casta do Enxofre & Zona Proibida",

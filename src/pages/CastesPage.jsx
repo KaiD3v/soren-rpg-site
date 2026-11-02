@@ -1,71 +1,89 @@
 import { useState } from "react";
+import { PageTitle } from "../components/Ornaments.jsx";
 import { CASTES } from "../data/castes.js";
 
-// Larguras crescentes formam a pirâmide (topo estreito, base larga).
-const WIDTHS = ["w-full md:w-3/5", "w-full md:w-3/4", "w-full md:w-11/12", "w-full"];
+// Silhueta da montanha (SVG 400x380) e a faixa de altura de cada casta, do cume à base.
+const PEAK = "200,8 222,48 236,40 268,104 282,98 318,176 334,170 392,372 8,372 66,170 82,176 118,98 132,104 164,40 178,48";
+const BANDS = [
+  { y: 0, h: 98, labelY: 74 },
+  { y: 98, h: 90, labelY: 150 },
+  { y: 188, h: 92, labelY: 240 },
+  { y: 280, h: 92, labelY: 332 },
+];
+const shortName = (caste) => caste.name.match(/Casta d[ao] (\S+)/)?.[1] ?? caste.name;
 
 export default function CastesPage() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const active = CASTES[selectedIdx];
 
   return (
-    <section>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <div className="lg:col-span-7 arcane-card rounded-2xl p-6">
-          <div className="mb-5">
-            <span className="text-xs font-mono uppercase tracking-widest text-amber-400">Eugenismo Anímico</span>
-            <h3 className="text-2xl font-bold font-serif text-stone-100 mt-1">A Pirâmide de Castas da Casa Vaelor</h3>
-            <p className="text-sm text-stone-400 mt-1">
-              Clique em cada escalão da montanha para inspecionar como o clã classifica o valor da vida humana pela densidade da alma.
-            </p>
-          </div>
+    <div className="stage:h-full stage:flex stage:flex-col">
+      <PageTitle glyph="🜚" title="A Casa Vaelor">
+        Quanto mais densa a alma, mais alto se vive na montanha. Escolha um estrato para ver como o clã mede o valor de uma vida.
+      </PageTitle>
 
-          <div className="space-y-3">
-            {CASTES.map((caste, idx) => (
-              <button
+      <div className="grid gap-12 lg:grid-cols-2 items-center stage:flex-1 stage:min-h-0">
+        <svg viewBox="0 0 400 380" className="w-full max-w-[520px] mx-auto overflow-visible stage:w-auto stage:max-w-full stage:h-[min(calc(100dvh-260px),520px)]" role="group" aria-label="Estratos da montanha">
+          <defs>
+            <clipPath id="montanha">
+              <polygon points={PEAK} />
+            </clipPath>
+          </defs>
+
+          <polygon points={PEAK} className="fill-abyss" />
+
+          {CASTES.map((caste, idx) => {
+            const band = BANDS[idx];
+            const isActive = idx === selectedIdx;
+            const select = () => setSelectedIdx(idx);
+            return (
+              <g
                 key={caste.tier}
-                onClick={() => setSelectedIdx(idx)}
-                className={`${WIDTHS[idx]} mx-auto block text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                  idx === selectedIdx
-                    ? "bg-white/10 border-[var(--accent-main)] shadow-lg scale-[1.01]"
-                    : "bg-black/40 border-white/10 hover:border-white/30"
-                }`}
+                className="estrato"
+                role="button"
+                tabIndex={0}
+                aria-pressed={isActive}
+                aria-label={caste.name}
+                onClick={select}
+                onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), select())}
               >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl font-serif" style={{ color: caste.color }}>{caste.symbol}</span>
-                    <div>
-                      <div className="text-xs font-mono uppercase tracking-wider text-stone-400">Escalão {caste.tier}</div>
-                      <div className="font-bold text-base md:text-lg text-stone-100">{caste.name}</div>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono px-2.5 py-1 rounded bg-black/50 border border-white/10 text-stone-300">
-                    {caste.soulRange}
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+                <rect x="0" y={band.y} width="400" height={band.h} clipPath="url(#montanha)" fill={caste.color} fillOpacity={isActive ? 0.5 : 0.12} className="transition-[fill-opacity] duration-500" />
+                <text x="200" y={band.labelY - 16} textAnchor="middle" className="font-display" fontSize="22" fill={isActive ? "#fff" : caste.color}>
+                  {caste.tier}
+                </text>
+                <text x="200" y={band.labelY + 4} textAnchor="middle" className="font-sc" fontSize="14" fill={isActive ? "#fff" : "rgb(var(--ink))"}>
+                  {shortName(caste)}
+                </text>
+              </g>
+            );
+          })}
 
-        <div className="lg:col-span-5 arcane-card rounded-2xl p-6">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl" style={{ color: active.color }}>{active.symbol}</span>
+          {BANDS.slice(1).map((b) => (
+            <line key={b.y} x1="0" x2="400" y1={b.y} y2={b.y} clipPath="url(#montanha)" className="stroke-metal/60" strokeDasharray="3 4" />
+          ))}
+          <polygon points={PEAK} className="fill-none stroke-metal" strokeWidth="1.5" />
+          <line x1="-20" x2="420" y1="372" y2="372" className="stroke-metal/50" />
+        </svg>
+
+        <article className="painel p-8 stage:p-6">
+          <div className="flex items-center gap-4">
+            {/* screen apaga o fundo preto do brasão sobre o painel escuro */}
+            <img src={active.emblem} alt="" className="w-20 h-20 shrink-0 rounded-full mix-blend-screen" />
             <div>
-              <h4 className="text-xl font-bold text-stone-100">{active.name}</h4>
-              <p className="text-xs font-mono text-amber-400">{active.soulRange}</p>
+              <p className="rotulo text-sm">Estrato {active.tier}</p>
+              <h2 className="font-display text-3xl md:text-4xl stage:text-3xl leading-tight">{active.name}</h2>
             </div>
           </div>
-          <div className="mb-3 text-xs font-mono uppercase tracking-wider text-stone-400">
-            Representantes na História: <span className="text-stone-200">{active.members}</span>
-          </div>
-          <p className="text-stone-300 text-sm leading-relaxed mb-4">{active.description}</p>
-          <div className="p-3.5 rounded-lg bg-black/50 border-l-4 border-[var(--accent-main)]">
-            <div className="text-xs font-mono text-[var(--accent-main)] mb-1">Visão de Soren Alkahest:</div>
-            <p className="italic font-serif text-base text-stone-200">{active.sorenView}</p>
-          </div>
-        </div>
+          <p className="rotulo mt-4">{active.soulRange}</p>
+          <p className="mt-4">
+            <span className="text-dim">Na história: </span>
+            {active.members}
+          </p>
+          <p className="text-dim leading-relaxed mt-4">{active.description}</p>
+          <h3 className="rotulo text-sm mt-8 mb-3">Como Soren os vê</h3>
+          <blockquote className="citacao">{active.sorenView}</blockquote>
+        </article>
       </div>
-    </section>
+    </div>
   );
 }

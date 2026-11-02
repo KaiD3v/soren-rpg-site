@@ -1,4 +1,4 @@
-// Personagens que orbitam Soren na Matriz Visual.
+// Personagens que orbitam Soren na Matriz Visual. imageTruth = retrato na Ressonância do Colar (opcional).
 export const NODES = {
   soren: {
     id: "soren",
@@ -35,7 +35,8 @@ export const NODES = {
     egoAnalysis: "Soren mantém a crença elitista implantada pela Casa Vaelor: quem não domina o Arcanum é como um inseto. Para não admitir que sofre pela morte de pais considerados 'fracos', ele inventa a desculpa esfarrapada de que sua revolta é puro orgulho ferido por ter tido seu sangue amaldiçoado.",
     truthQuote: "“Cada vez que conjuro o fogo ou as sombras do meu sangue Tiefling, eu sei exatamente quanto ele custou. Lazare comprou o meu poder entregando a alma do meu pai e da minha mãe ao Inferno... e eu nunca consegui tirar o colar deles do peito.”",
     truthAnalysis: "No fundo, Soren amava profundamente Elian e Lyra. A prova viva de sua contradição é o fato de que ele jogou fora toda a sua posição na Alta Casta aos 17 anos no instante em que descobriu que seus pais foram a moeda de troca do seu ritual.",
-    image: "/assets/soren.jpg"
+    image: "/assets/soren.jpg",
+    imageTruth: "/assets/soren-verdade.webp"
   },
   parents: {
     id: "parents",
@@ -72,7 +73,8 @@ export const NODES = {
     egoAnalysis: "Na superfície, Soren fala dos pais com desdém clínico, tratando-os como moedas baratas da pirâmide do clã. Ele finge que o sacrifício deles foi 'natural' dentro da lei dos mais fortes.",
     truthQuote: "“Eles tinham almas pequenas, sim... mas naquele laboratório escuro, eles nunca me olharam como uma arma. Saber que as almas deles foram entregues ao abismo para que eu tivesse este poder é o que me faz querer queimar a Casa Vaelor inteira.”",
     truthAnalysis: "A contradição central de Soren: segundo sua própria ideologia, a vida de seus pais era insignificante. Contudo, a dor por eles foi tão avassaladora que o fez trair todo o seu clã e abandonar seu nome.",
-    image: "/assets/parents.jpg"
+    image: "/assets/parents.jpg",
+    imageTruth: "/assets/pais-verdade.webp"
   },
   clan: {
     id: "clan",
@@ -109,7 +111,8 @@ export const NODES = {
     egoAnalysis: "Mesmo renegado, Soren ainda pensa como um Vaelor. Ele não quer destruir o clã para 'libertar os oprimidos' — ele quer provar que sua própria capacidade supera toda a linhagem pura que o usou.",
     truthQuote: "“Aquela montanha dourada inteira foi construída sobre pactos sujos e almas sacrificadas no escuro. Eu risquei o nome Vaelor com uma lâmina porque cada letra dele tem o gosto do sangue dos meus pais.”",
     truthAnalysis: "Por trás da arrogância herdada do clã, Soren carrega um trauma profundo dos dez anos em que serviu fielmente aos assassinos de sua própria família sem saber.",
-    image: "/assets/clan.jpg"
+    image: "/assets/clan.jpg",
+    imageTruth: "/assets/cla-verdade.webp"
   },
   villain: {
     id: "villain",
@@ -146,6 +149,7 @@ export const NODES = {
     egoAnalysis: "Para Soren, Lazare é o obstáculo supremo. Derrotá-lo significa usar o próprio fogo infernal e a alquimia que Lazare lhe impôs para aniquilar seu criador.",
     truthQuote: "“Ele me olhou nos olhos quando eu tinha sete anos, entregou o colar sujo de cinzas dos meus pais e me acolheu como um filho... minutos depois de ter entregue a alma dos dois ao Inferno. Eu não quero apenas matá-lo; quero destruir tudo o que ele construiu.”",
     truthAnalysis: "A traição de Lazare dói em dobro porque, durante dez anos, Soren o admirou como figura paterna substituta e mentor antes de descobrir os arquivos do 'Projeto Quimera'.",
-    image: "/assets/villain.jpg"
+    image: "/assets/villain.jpg",
+    imageTruth: "/assets/vilao-verdade.webp"
   }
 };

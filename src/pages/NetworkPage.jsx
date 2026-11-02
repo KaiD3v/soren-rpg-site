@@ -1,222 +1,233 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Pendant from "../components/Pendant.jsx";
 import { NODES } from "../data/nodes.js";
 
-// Posição de cada nó no círculo (%) e ponta da linha que o liga a Soren (coords do SVG 400x400).
-const ORBIT = [
-  { id: "clan", left: "50%", top: "13%", line: [200, 52], label: "🜚 O Clã Vaelor", imgPos: "" },
-  { id: "parents", left: "18%", top: "73%", line: [72, 285], label: "🜂 Os Pais (Elian & Lyra)", imgPos: "object-top" },
-  { id: "villain", left: "82%", top: "73%", line: [328, 285], label: "🜔 O Vilão (Lazare)", imgPos: "object-top" },
+// Elos do círculo: posição (%) e ponta da linha até Soren (coords do SVG 400x400).
+const LINKS = [
+  { id: "clan", left: 50, top: 13, label: "O clã Vaelor" },
+  { id: "parents", left: 18, top: 70, label: "Elian e Lyra" },
+  { id: "villain", left: 82, top: 70, label: "Lazare" },
 ];
 
-const QUICK_SELECT = [
-  { id: "soren", tag: "PROTAGONISTA", tagColor: "text-amber-400", name: "Soren Alkahest" },
-  { id: "parents", tag: "OS PAIS (MOEDA DO PACTO)", tagColor: "text-sky-400", name: "Elian & Lyra" },
-  { id: "clan", tag: "O CLÃ (DOUTRINA)", tagColor: "text-yellow-400", name: "Casa Vaelor" },
-  { id: "villain", tag: "O VILÃO (PATRIARCA)", tagColor: "text-red-400", name: "Lazare Vaelor" },
+// A inscrição do anel muda com a lente: a lei do Arcanum, ou o que o colar guarda.
+const INSCRIPTION = {
+  mask: "NIHIL EX NIHILO 🜍 OMNIA MUTANTUR 🜔 SOLVE ET COAGULA 🜚 ANIMA EST PRETIUM 🜂 ",
+  truth: "MEMENTO ELIAN 🜂 MEMENTO LYRA 🜂 AMOR NON DISSOLVITUR 🜂 ANIMA EST PRETIUM 🜂 ",
+};
+
+const LEAVES = [
+  { id: "voz", label: "Voz" },
+  { id: "papel", label: "Papel" },
+  { id: "aparencia", label: "Aparência" },
 ];
 
-export default function NetworkPage({ truthMode, openLightbox }) {
+// Palco em três partes: quem está selecionado | o círculo | folhas de texto.
+export default function NetworkPage({ truthMode, onToggleTruth, openLightbox }) {
   const [selected, setSelected] = useState("soren");
   const data = NODES[selected];
 
   return (
-    <section className="space-y-6">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        <div className="lg:col-span-5 arcane-card rounded-2xl p-5 flex flex-col items-center">
-          <div className="w-full flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-stone-400">Círculo de Transmutação</span>
-            <span className="text-xs font-mono text-[var(--accent-main)]">Clique em um Nó</span>
-          </div>
-          <p className="text-xs text-stone-400 mb-4 text-center">
-            Todos os elementos da história orbitam e alimentam a existência de <strong>Soren Alkahest</strong>.
-          </p>
+    <div className="grid gap-14 stage:gap-8 stage:h-full stage:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] stage:items-center">
+      <Portrait data={data} truthMode={truthMode} openLightbox={openLightbox} />
 
-          <TransmutationCircle selected={selected} onSelect={setSelected} />
+      <section className="order-first stage:order-none text-center">
+        <h1 className="font-display text-[clamp(2.8rem,8vw,6.5rem)] stage:text-[clamp(2.5rem,4vw,4rem)] leading-none">
+          Soren <span className="slashed-surname" title="Nome do clã riscado à faca após o exílio">Vaelor</span> Alkahest
+        </h1>
+        <p className="rotulo mt-3 stage:mt-2 stage:text-sm">Tiefling por pacto ritual, mago, aprendiz arcano, alquimista</p>
 
-          <div className="w-full grid grid-cols-2 gap-2.5 mt-4 pt-4 border-t border-white/10">
-            {QUICK_SELECT.map((q) => (
-              <button
-                key={q.id}
-                onClick={() => setSelected(q.id)}
-                className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
-                  selected === q.id ? "border-[var(--accent-main)] bg-white/10" : "border-white/10 bg-black/30 hover:bg-white/5"
-                }`}
-              >
-                <div className={`text-[10px] font-mono ${q.tagColor}`}>{q.tag}</div>
-                <div className="text-xs font-bold text-stone-100 truncate">{q.name}</div>
-              </button>
-            ))}
-          </div>
+        <TransmutationCircle selected={selected} onSelect={setSelected} truthMode={truthMode} onToggleTruth={onToggleTruth} />
+
+        <p className="text-dim italic text-sm max-w-sm mx-auto">
+          {truthMode ? "O colar ressoa. O que Soren reprime vem à tona." : "Escolha um elo do círculo. Toque o colar no peito de Soren."}
+        </p>
+      </section>
+
+      <Leaves data={data} truthMode={truthMode} />
+    </div>
+  );
+}
+
+function TransmutationCircle({ selected, onSelect, truthMode, onToggleTruth }) {
+  return (
+    <div className="relative w-full max-w-[600px] aspect-square mx-auto my-8 stage:my-3 stage:max-w-none stage:w-[min(calc(100dvh-290px),36vw)] select-none">
+      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true">
+        <defs>
+          <radialGradient id="brilho" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" style={{ stopColor: "rgb(var(--accent) / 0.25)" }} />
+            <stop offset="100%" style={{ stopColor: "rgb(var(--abyss) / 0)" }} />
+          </radialGradient>
+          <path id="anel" d="M200 200m-186 0a186 186 0 1 1 372 0a186 186 0 1 1-372 0" />
+        </defs>
+
+        <circle cx="200" cy="200" r="200" fill="url(#brilho)" />
+
+        <g className="gira-lento fill-none">
+          <circle cx="200" cy="200" r="198" className="stroke-metal/50" />
+          <circle cx="200" cy="200" r="174" className="stroke-metal/50" />
+          <text className="inscricao">
+            <textPath href="#anel" textLength="1160" lengthAdjust="spacing">
+              {truthMode ? INSCRIPTION.truth : INSCRIPTION.mask}
+            </textPath>
+          </text>
+        </g>
+
+        <g className="gira-reverso fill-none">
+          <polygon points="200,52 328,274 72,274" className="stroke-metal/30" />
+          <polygon points="200,348 328,126 72,126" className="stroke-accent/25" />
+          <circle cx="200" cy="200" r="148" className="stroke-line/60" strokeDasharray="2 6" />
+        </g>
+
+        <rect x="140" y="140" width="120" height="120" transform="rotate(45 200 200)" className="fill-none stroke-metal/20" />
+
+        {LINKS.map((n) => (
+          <line
+            key={n.id}
+            x1="200"
+            y1="200"
+            x2={n.left * 4}
+            y2={n.top * 4}
+            className={`elo ${selected === "soren" || selected === n.id ? "ativo" : ""}`}
+          />
+        ))}
+
+        {/* Corrente do colar, do pescoço de Soren até o pingente */}
+        <path d="M184 236Q190 290 200 318M216 236Q210 290 200 318" fill="none" stroke="#c9d6e3" strokeOpacity="0.55" strokeDasharray="1.5 2.5" />
+      </svg>
+
+      <OrbitNode id="soren" left={50} top={50} label="Soren" big selected={selected} onSelect={onSelect} />
+      {LINKS.map((n) => (
+        <OrbitNode key={n.id} {...n} selected={selected} onSelect={onSelect} />
+      ))}
+
+      <button
+        onClick={onToggleTruth}
+        aria-label={truthMode ? "Soltar o colar" : "Tocar o colar"}
+        className="absolute left-1/2 top-[82%] -translate-x-1/2 -translate-y-1/2 z-20 p-2 cursor-pointer transition-transform hover:scale-110"
+      >
+        <Pendant lit={truthMode} width={30} />
+      </button>
+    </div>
+  );
+}
+
+// Tamanho em % do círculo, para acompanhar o círculo quando ele encolhe com a altura da tela.
+function OrbitNode({ id, left, top, label, big, selected, onSelect }) {
+  return (
+    <button
+      onClick={() => onSelect(id)}
+      aria-pressed={selected === id}
+      style={{ left: `${left}%`, top: `${top}%` }}
+      className={`no-orbita absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${big ? "w-[23%] z-10" : "w-[15%]"}`}
+    >
+      <span className="anel-retrato block w-full aspect-square rounded-full overflow-hidden bg-abyss">
+        <img src={NODES[id].image} alt="" className="w-full h-full object-cover object-top" />
+      </span>
+      <span className="nome-no mt-1.5 px-2 font-sc text-sm whitespace-nowrap bg-abyss/80 rounded-lens transition-colors">{label}</span>
+    </button>
+  );
+}
+
+// Na Ressonância o retrato dá lugar à versão "da verdade" (quando existe), num fade entre as duas.
+function Portrait({ data, truthMode, openLightbox }) {
+  const showTruth = truthMode && data.imageTruth;
+  return (
+    <section className="text-center flex flex-col items-center">
+      <button
+        onClick={() => openLightbox(showTruth ? data.imageTruth : data.image, `${data.name}, ${data.role}`)}
+        className="arco-moldura block w-full max-w-[300px] aspect-[5/7] stage:w-auto stage:max-w-none stage:h-[min(calc(100dvh-400px),460px)] cursor-zoom-in"
+        aria-label={`Ampliar o retrato de ${data.name}`}
+      >
+        <span className="arco relative block w-full h-full bg-abyss">
+          <img src={data.image} alt={data.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+          {data.imageTruth && (
+            <img
+              src={data.imageTruth}
+              alt=""
+              className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ${showTruth ? "opacity-100" : "opacity-0"}`}
+            />
+          )}
+        </span>
+      </button>
+
+      <h2 className="font-display text-4xl leading-tight mt-4">
+        {data.formerName ? (
+          <>
+            Soren <span className="slashed-surname">{data.formerName}</span> Alkahest
+          </>
+        ) : (
+          data.name
+        )}
+      </h2>
+      <p className="text-dim italic text-sm mt-1">{data.role}</p>
+      <p className="rotulo text-sm mt-1">
+        <span className="text-accent" title={data.symbolName}>{data.alchemicalSymbol}</span> {data.caste}
+      </p>
+
+      <div className="flex items-end gap-3 mt-4 text-left">
+        <div className="frasco stage:w-[40px] stage:h-[84px]" role="img" aria-label={`Densidade anímica: ${data.soulDensity}%`}>
+          <div className="frasco-liquido" style={{ height: `${data.soulDensity}%` }}></div>
         </div>
-
-        <Inspector data={data} truthMode={truthMode} openLightbox={openLightbox} />
+        <div className="max-w-[190px]">
+          <div className="font-display text-3xl text-accent leading-none">{data.soulDensity}%</div>
+          <div className="text-xs text-dim leading-snug mt-1">{data.soulLabel}</div>
+        </div>
       </div>
     </section>
   );
 }
 
-function TransmutationCircle({ selected, onSelect }) {
+// Folhas de texto. Tocar o colar volta para "Voz", onde a mudança de lente aparece.
+function Leaves({ data, truthMode }) {
+  const [leaf, setLeaf] = useState("voz");
+  useEffect(() => setLeaf("voz"), [truthMode]);
+
+  // Altura fixa igual à coluna do retrato: as abas não pulam ao trocar de folha.
   return (
-    <div className="relative w-full max-w-[370px] aspect-square my-2 select-none">
-      <svg viewBox="0 0 400 400" className="w-full h-full">
-        <defs>
-          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(229, 142, 38, 0.28)" />
-            <stop offset="100%" stopColor="rgba(9, 10, 15, 0)" />
-          </radialGradient>
-        </defs>
-
-        <circle cx="200" cy="200" r="175" fill="url(#centerGlow)" />
-
-        <g className="ring-spin">
-          <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(229, 142, 38, 0.25)" strokeWidth="1.5" strokeDasharray="8 6" />
-          <polygon points="200,50 330,275 70,275" fill="none" stroke="rgba(229, 142, 38, 0.16)" strokeWidth="1" />
-          <polygon points="200,350 330,125 70,125" fill="none" stroke="rgba(56, 189, 248, 0.14)" strokeWidth="1" />
-        </g>
-
-        <g className="ring-spin-reverse">
-          <circle cx="200" cy="200" r="95" fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1" />
-          <rect x="133" y="133" width="134" height="134" fill="none" stroke="rgba(229, 142, 38, 0.15)" strokeWidth="1" transform="rotate(45 200 200)" />
-        </g>
-
-        {ORBIT.map((n) => (
-          <line
-            key={n.id}
-            x1="200"
-            y1="200"
-            x2={n.line[0]}
-            y2={n.line[1]}
-            className={`connection-line ${selected === "soren" || selected === n.id ? "active-line" : ""}`}
-          />
+    <section className="stage:h-[min(calc(100dvh-160px),700px)] stage:min-h-0 stage:flex stage:flex-col">
+      <div role="tablist" className="flex gap-6 border-b border-line/50 mb-5">
+        {LEAVES.map((l) => (
+          <button
+            key={l.id}
+            role="tab"
+            aria-selected={leaf === l.id}
+            onClick={() => setLeaf(l.id)}
+            className={`font-sc pb-2 -mb-px border-b cursor-pointer transition-colors ${
+              leaf === l.id ? "text-accent border-accent" : "text-dim border-transparent hover:text-ink"
+            }`}
+          >
+            {l.label}
+          </button>
         ))}
-      </svg>
-
-      {/* Nó central: Soren */}
-      <div
-        onClick={() => onSelect("soren")}
-        style={{ left: "50%", top: "50%" }}
-        className={`orbit-node absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20 ${selected === "soren" ? "active-node" : ""}`}
-      >
-        <div className="node-avatar-ring w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-amber-400 bg-stone-900 transition-all duration-300 relative">
-          <img src={NODES.soren.image} alt="Soren Alkahest" className="w-full h-full object-cover object-top" />
-        </div>
-        <span className="node-label mt-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono border border-white/20 bg-stone-900/90 text-stone-100 whitespace-nowrap shadow">
-          🜍 Soren (Centro)
-        </span>
       </div>
 
-      {ORBIT.map((n) => (
-        <div
-          key={n.id}
-          onClick={() => onSelect(n.id)}
-          style={{ left: n.left, top: n.top }}
-          className={`orbit-node absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 ${selected === n.id ? "active-node" : ""}`}
-        >
-          <div className="node-avatar-ring w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white/30 bg-stone-900 transition-all duration-300">
-            <img src={NODES[n.id].image} alt={NODES[n.id].name} className={`w-full h-full object-cover ${n.imgPos}`} />
-          </div>
-          <span className="node-label mt-1 px-2 py-0.5 rounded-full text-[10px] font-mono border border-white/20 bg-stone-900/90 text-stone-200 whitespace-nowrap shadow">
-            {n.label}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
+      <div role="tabpanel" className="stage:min-h-0 stage:overflow-y-auto stage:pr-2">
+        {leaf === "voz" && (
+          <>
+            <h3 className="rotulo text-sm mb-3">{truthMode ? "O que a alma de Soren realmente sente" : "O que Soren diz ao mundo"}</h3>
+            <blockquote className="citacao">{truthMode ? data.truthQuote : data.egoQuote}</blockquote>
+            <p className="text-dim leading-relaxed mt-4">{truthMode ? data.truthAnalysis : data.egoAnalysis}</p>
+          </>
+        )}
 
-function Inspector({ data, truthMode, openLightbox }) {
-  return (
-    <div className="lg:col-span-7 arcane-card rounded-2xl p-5 md:p-7">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-        <div className="md:col-span-5">
-          <div className="portrait-frame rounded-xl aspect-[3/4] bg-stone-950 relative group">
-            <img src={data.image} alt={data.name} className="portrait-img" />
-            <button
-              onClick={() => openLightbox(data.image, `${data.name} — ${data.role}`)}
-              className="absolute bottom-3 right-3 z-20 px-3 py-1.5 rounded-lg bg-black/80 hover:bg-black text-xs font-mono text-stone-200 border border-white/20 flex items-center gap-1.5 backdrop-blur-md transition cursor-pointer"
-            >
-              <span>🔍</span> Ampliar Arte
-            </button>
-          </div>
+        {leaf === "papel" && (
+          <>
+            <h3 className="rotulo text-sm mb-3">Papel na trajetória de Soren</h3>
+            <p className="text-lg leading-relaxed">{data.relationToCenter}</p>
+          </>
+        )}
 
-          <div className="mt-4 p-3.5 rounded-xl bg-black/40 border border-white/10">
-            <div className="flex items-center justify-between text-xs font-mono mb-1.5">
-              <span className="text-stone-400">DENSIDADE ANÍMICA</span>
-              <span className="text-[var(--accent-main)] font-bold">{data.soulDensity}%</span>
-            </div>
-            <div className="soul-bar-track mb-2">
-              <div className="soul-bar-fill" style={{ width: `${data.soulDensity}%` }}></div>
-            </div>
-            <div className="text-[11px] font-mono text-stone-300">{data.soulLabel}</div>
-          </div>
-        </div>
-
-        <div className="md:col-span-7 space-y-4">
-          <div className="flex items-start justify-between gap-3 border-b border-white/10 pb-3">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono px-2 py-0.5 rounded bg-white/10 text-amber-300">{data.caste}</span>
-                <span className="text-xs font-mono text-stone-400">{data.symbolName}</span>
+        {leaf === "aparencia" && (
+          <dl className="space-y-4">
+            {data.visualGuide.map((item) => (
+              <div key={item.label}>
+                <dt className="text-accent leading-snug">{item.label}</dt>
+                <dd className="text-dim text-[15px] leading-snug mt-0.5">{item.text}</dd>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold font-serif text-stone-100 mt-1">
-                {data.formerName ? (
-                  <>
-                    Soren <span className="slashed-surname">{data.formerName}</span> Alkahest
-                  </>
-                ) : (
-                  data.name
-                )}
-              </h2>
-              <p className="text-xs sm:text-sm font-mono text-stone-400 mt-0.5">{data.role}</p>
-            </div>
-            <span className="text-3xl sm:text-4xl font-serif text-[var(--accent-main)] select-none">{data.alchemicalSymbol}</span>
-          </div>
-
-          <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
-            <div className="text-xs font-mono uppercase tracking-wider text-stone-400 mb-1">🔗 Papel na Trajetória de Soren</div>
-            <p className="text-sm text-stone-200 leading-relaxed">{data.relationToCenter}</p>
-          </div>
-
-          {/* A Desculpa Esfarrapada vs. A Verdade Oculta */}
-          <div className="p-4 rounded-xl bg-black/45 border border-white/15">
-            {truthMode ? (
-              <>
-                <div className="text-xs font-mono uppercase tracking-wider mb-1">
-                  💎 <span className="text-sky-300">O que a Alma de Soren realmente sente (Verdade Reprimida):</span>
-                </div>
-                <blockquote className="italic font-serif text-lg md:text-xl text-sky-100 border-l-4 border-sky-400 pl-4 py-1 my-3 bg-sky-950/30 rounded-r">
-                  {data.truthQuote}
-                </blockquote>
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mt-2">{data.truthAnalysis}</p>
-              </>
-            ) : (
-              <>
-                <div className="text-xs font-mono uppercase tracking-wider mb-1">
-                  🜍 <span className="text-amber-300">O que Soren diz ao mundo (A Desculpa Racional):</span>
-                </div>
-                <blockquote className="italic font-serif text-lg md:text-xl text-amber-100 border-l-4 border-amber-500 pl-4 py-1 my-3 bg-amber-950/25 rounded-r">
-                  {data.egoQuote}
-                </blockquote>
-                <p className="text-xs sm:text-sm text-stone-300 leading-relaxed mt-2">{data.egoAnalysis}</p>
-              </>
-            )}
-          </div>
-        </div>
+            ))}
+          </dl>
+        )}
       </div>
-
-      <div className="mt-6 pt-5 border-t border-white/10">
-        <h3 className="text-xs font-mono uppercase tracking-widest text-stone-400 mb-3">
-          👁️ Diretrizes de Concepção Visual & Detalhes de Cena
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {data.visualGuide.map((item) => (
-            <div key={item.label} className="p-3 rounded-lg bg-black/35 border border-white/10">
-              <div className="text-xs font-mono uppercase tracking-wider text-[var(--accent-main)] mb-1">{item.label}</div>
-              <div className="text-sm text-stone-300 leading-relaxed">{item.text}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }

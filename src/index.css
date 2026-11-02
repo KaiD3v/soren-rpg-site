@@ -2,279 +2,1008 @@
 @tailwind components;
 
 /* ==========================================================================
-   DOSSIÊ INTERATIVO: SOREN [VAELOR] ALKAHEST
-   Estética: Grimório de Alquimia Anímica & Astrolábio do Arcanum
+   DOSSIÊ ARCANO: SOREN [VAELOR] ALKAHEST
+   Duas lentes, dois materiais:
+   - Máscara Racional: obsidiana, couro, latão e brasa. Gótico, rígido.
+   - Ressonância do Colar: abismo marinho e cristal. Romano, suave.
    ========================================================================== */
 
-:root {
-  --bg-abyss: #090a0f;
-  --bg-surface: #12141d;
-  --bg-elevated: #191c28;
-  --bg-glass: rgba(18, 20, 29, 0.86);
-  
-  --text-primary: #ece8df;
-  --text-secondary: #a39e93;
-  --text-muted: #6c6860;
-
-  /* Tema Ego Racional (Âmbar / Brasa Alquímica / Sangue) */
-  --accent-main: #e58e26;
-  --accent-glow: rgba(229, 142, 38, 0.35);
-  --accent-crimson: #c23616;
-  
-  /* Tema Verdade da Alma (Cristal Azul do Colar de Elian e Lyra) */
-  --soul-blue: #38bdf8;
-  --soul-glow: rgba(56, 189, 248, 0.35);
-
-  --border-subtle: rgba(229, 142, 38, 0.22);
-  --border-strong: rgba(229, 142, 38, 0.55);
-
-  --font-display: 'Cinzel', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', Consolas, monospace;
+:root,
+[data-lens="mascara"] {
+  --abyss: 12 10 14;
+  --surface: 26 13 16;
+  --line: 110 85 50;
+  --metal: 176 141 87;
+  --accent: 224 89 42;
+  --ink: 214 200 171;
+  --dim: 150 135 110;
+  --glow-top: #5a1a0e66;
+  --glow-bottom: #3a0d0855;
+  --font-display: "UnifrakturMaguntia", serif;
+  --corner: 0px;
+  --wax-light: #c43a2a;
+  --wax-dark: #4a0a06;
 }
 
-body.soul-truth-mode {
-  --accent-main: #38bdf8;
-  --accent-glow: rgba(56, 189, 248, 0.35);
-  --border-subtle: rgba(56, 189, 248, 0.25);
-  --border-strong: rgba(56, 189, 248, 0.65);
-}
-
-* {
-  box-sizing: border-box;
+[data-lens="verdade"] {
+  --abyss: 3 10 18;
+  --surface: 10 29 43;
+  --line: 47 111 147;
+  --metal: 159 216 245;
+  --accent: 143 220 255;
+  --ink: 223 233 242;
+  --dim: 125 153 173;
+  --glow-top: #1b5a7a66;
+  --glow-bottom: #0e3a5255;
+  --font-display: "IM Fell English", Georgia, serif;
+  --corner: 16px;
+  --wax-light: #4aa3d6;
+  --wax-dark: #0b2f47;
 }
 
 body {
-  background-color: var(--bg-abyss);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
   margin: 0;
-  padding: 0;
+  min-height: 100vh;
+  background: rgb(var(--abyss));
+  color: rgb(var(--ink));
+  font: 18px/1.65 "IM Fell English", Georgia, serif;
   overflow-x: hidden;
-  transition: background-color 0.5s ease, color 0.4s ease;
 }
 
-.alchemical-backdrop {
+/* Luz ambiente + vinheta: as bordas da tela somem no escuro */
+body::before {
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
-  background: 
-    radial-gradient(circle at 20% 20%, var(--accent-glow) 0%, transparent 45%),
-    radial-gradient(circle at 80% 80%, rgba(194, 54, 22, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg, #07080c 0%, #0d1018 50%, #07080c 100%);
-  opacity: 0.9;
-  transition: background 0.6s ease;
+  background:
+    radial-gradient(ellipse at 50% -5%, var(--glow-top), transparent 55%),
+    radial-gradient(ellipse at 50% 115%, var(--glow-bottom), transparent 55%),
+    radial-gradient(ellipse at center, transparent 55%, #000000b0 100%);
 }
+
+/* Grão de pergaminho velho sobre tudo */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Painel com cantoneiras de metal em diagonal (sem cara de "card") */
+  .painel {
+    position: relative;
+    background: rgb(var(--surface) / 0.55);
+    border: 1px solid rgb(var(--line) / 0.6);
+    border-radius: var(--corner);
+  }
+
+  .painel::before,
+  .painel::after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-color: rgb(var(--metal));
+    border-style: solid;
+    pointer-events: none;
+    transition: border-radius 0.4s;
+  }
+
+  .painel::before {
+    top: -4px;
+    left: -4px;
+    border-width: 2px 0 0 2px;
+    border-top-left-radius: var(--corner);
+  }
+
+  .painel::after {
+    bottom: -4px;
+    right: -4px;
+    border-width: 0 2px 2px 0;
+    border-bottom-right-radius: var(--corner);
+  }
+
+  [data-lens="verdade"] .painel {
+    box-shadow: inset 0 0 60px -20px rgb(var(--accent) / 0.35);
+  }
+
+  /* Divisor ornamental: linha que some nas pontas com um glifo no centro */
+  .divisor {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgb(var(--metal));
+  }
+
+  .divisor::before,
+  .divisor::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(var(--metal) / 0.7));
+  }
+
+  .divisor::after {
+    background: linear-gradient(270deg, transparent, rgb(var(--metal) / 0.7));
+  }
+
+  .rotulo {
+    font-family: "IM Fell English SC", Georgia, serif;
+    color: rgb(var(--dim));
+    letter-spacing: 0.03em;
+  }
+
+  .opcao {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgb(var(--line) / 0.45);
+    border-radius: var(--corner);
+    background: rgb(var(--abyss) / 0.45);
+    transition: border-color 0.25s, background-color 0.25s;
+    cursor: pointer;
+  }
+
+  .opcao:hover {
+    border-color: rgb(var(--line));
+  }
+
+  .opcao[aria-pressed="true"] {
+    border-color: rgb(var(--accent));
+    background: rgb(var(--accent) / 0.08);
+  }
+
+  .citacao {
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.5;
+    padding-left: 1.25rem;
+    border-left: 2px solid rgb(var(--accent));
+  }
+
+  .botao {
+    font-family: "IM Fell English SC", Georgia, serif;
+    border: 1px solid rgb(var(--metal));
+    border-radius: var(--corner);
+    padding: 0.5rem 1.25rem;
+    transition: background-color 0.25s;
+    cursor: pointer;
+  }
+
+  .botao:hover {
+    background: rgb(var(--metal) / 0.12);
+  }
+
+  .botao:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR: o gaveteiro do arquivo
+   Cada seção é a plaqueta de metal gravado de uma gaveta.
+   A gaveta aberta (seção atual) fica puxada para fora e acesa.
+   ========================================================================== */
+
+.barra {
+  background: linear-gradient(rgb(var(--abyss) / 0.97), rgb(var(--abyss) / 0.8));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgb(var(--line) / 0.6);
+}
+
+/* Anotação do arquivista sobre a linha de baixo: a cota da seção atual */
+.catalogo {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  padding: 0 0.9rem;
+  background: rgb(var(--abyss));
+  font-family: "IM Fell English SC", Georgia, serif;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgb(var(--dim));
+  white-space: nowrap;
+}
+
+.gaveta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 6.5rem;
+  padding: 0.2rem 1.1rem 0.25rem;
+  font-family: "IM Fell English SC", Georgia, serif;
+  background: linear-gradient(rgb(var(--surface) / 0.9), rgb(var(--abyss) / 0.9));
+  color: rgb(var(--dim));
+  border: 1px solid rgb(var(--line) / 0.7);
+  border-radius: var(--corner);
+  box-shadow: inset 0 1px 0 rgb(var(--metal) / 0.15), inset 0 -2px 6px #0008;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Parafusos do porta-etiqueta */
+.gaveta::before,
+.gaveta::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 50%;
+  background: rgb(var(--metal) / 0.6);
+}
+
+.gaveta::before { left: 5px; }
+.gaveta::after { right: 5px; }
+
+.gaveta:hover {
+  color: rgb(var(--ink));
+  border-color: rgb(var(--line));
+}
+
+.gaveta.aberta {
+  transform: translateY(4px);
+  color: rgb(var(--ink));
+  border-color: rgb(var(--metal));
+  box-shadow: inset 0 1px 0 rgb(var(--metal) / 0.3), inset 0 -2px 6px #0008, 0 10px 22px -8px rgb(var(--accent) / 0.7);
+}
+
+.gaveta.aberta::before,
+.gaveta.aberta::after {
+  background: rgb(var(--accent));
+}
+
+.gaveta .folio {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  opacity: 0.7;
+}
+
+.gaveta.aberta .folio {
+  color: rgb(var(--accent));
+  opacity: 1;
+}
+
+/* Gaveteiro do celular: painel abaixo da barra com as gavetas empilhadas */
+.gaveteiro {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgb(var(--abyss) / 0.97);
+  border-bottom: 1px solid rgb(var(--line) / 0.6);
+  box-shadow: 0 20px 40px -10px #000;
+  animation: gaveteiro 0.25s ease-out;
+}
+
+@keyframes gaveteiro {
+  from { opacity: 0; transform: translateY(-8px); }
+}
+
+.gaveta.gaveta-linha {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 1.25rem;
+}
+
+.gaveta-linha.aberta {
+  transform: translateX(6px);
+}
+
+/* Sinete de cera: volta à Matriz */
+.sinete {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  filter: brightness(0.75) saturate(0.85);
+  transition: transform 0.25s, filter 0.25s;
+}
+
+.sinete:hover {
+  transform: rotate(-8deg) scale(1.06);
+  filter: none;
+}
+
+/* O colar pendurado num gancho: balança quando o mouse passa */
+@keyframes balancar {
+  25% { transform: rotate(9deg); }
+  50% { transform: rotate(-6deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* Varão de ferro com pontas: sineta e colar pendurados nele */
+.varao {
+  position: relative;
+  padding: 0.35rem 0.75rem 0;
+}
+
+.varao::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgb(var(--metal) / 0.8) 12%, rgb(var(--metal) / 0.8) 88%, transparent);
+}
+
+.varao::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0.4rem;
+  right: 0.4rem;
+  height: 6px;
+  border-left: 2px solid rgb(var(--metal));
+  border-right: 2px solid rgb(var(--metal));
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gancho:hover .sineta {
+  animation: balancar 1.2s ease-in-out;
+  transform-origin: 50% 4px;
+}
+
+.gancho:hover .pingente {
+  animation: balancar 1.2s ease-in-out;
+  transform-origin: 50% 5px;
+}
+
+/* ==========================================================================
+   PINGENTE DO COLAR: cristal apagado na Máscara, aceso e pulsando na Verdade
+   ========================================================================== */
+
+.pingente .cristal {
+  fill: #23323d;
+  stroke: #c9d6e3;
+  stroke-width: 1.2;
+  transition: fill 0.6s, filter 0.6s;
+}
+
+.pingente .faceta {
+  stroke: #c9d6e3;
+  stroke-opacity: 0.45;
+  stroke-width: 0.8;
+  fill: none;
+}
+
+.pingente.aceso .cristal {
+  fill: #8fdcff;
+  filter: drop-shadow(0 0 6px #8fdcff);
+  animation: pulsar 2.6s ease-in-out infinite;
+}
+
+@keyframes pulsar {
+  50% { filter: drop-shadow(0 0 14px #bfeaff); }
+}
+
+/* ==========================================================================
+   VÉU: transição da lente. Luz do cristal (Verdade) ou trevas (Máscara)
+   cobrem a tela, a lente troca por baixo, e o véu se desfaz.
+   ========================================================================== */
+
+.veu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.veu-luz {
+  position: absolute;
+  inset: 0;
+  animation: veu 1.1s ease-in-out forwards;
+}
+
+/* Cresce em tamanho (não em scale) para a linha do anel continuar fina */
+.veu-anel {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1.5px solid;
+  animation: anel 1s cubic-bezier(0.2, 0.6, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes veu {
+  0% { opacity: 0; }
+  42%, 52% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes anel {
+  0% { width: 8px; height: 8px; opacity: 0.9; }
+  100% { width: 220vmax; height: 220vmax; opacity: 0; }
+}
+
+/* ==========================================================================
+   TROCA DE PÁGINA: um véu escuro cobre a página nova e se desfaz.
+   Máscara: queima de baixo para cima, com chamas na borda.
+   Verdade: um círculo arcano de luz se abre do centro.
+   Fica abaixo da barra (z-30), que continua visível.
+   ========================================================================== */
+
+@property --chama {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --raio {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+.troca {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.troca-veu {
+  position: absolute;
+  inset: 0;
+  background: rgb(var(--abyss));
+}
+
+/* Chamas */
+.troca-chamas {
+  animation: queimar 0.95s cubic-bezier(0.45, 0, 0.35, 1) forwards;
+}
+
+.troca-chamas .troca-veu {
+  -webkit-mask: linear-gradient(to top, transparent var(--chama), #000 calc(var(--chama) + 8%));
+  mask: linear-gradient(to top, transparent var(--chama), #000 calc(var(--chama) + 8%));
+}
+
+/* Línguas de fogo: camadas com larguras e alturas diferentes para não formar um padrão regular */
+.labareda {
+  position: absolute;
+  left: -60px;
+  right: -60px;
+  bottom: calc(var(--chama) - 3vh);
+  height: 26vh;
+  background:
+    radial-gradient(ellipse 18px 55% at 50% 100%, #fff4cc 0%, #ffc35c 30%, #ff6a1a 55%, transparent 75%) 0 100% / 37px 100% repeat-x,
+    radial-gradient(ellipse 30px 85% at 50% 100%, #ffb347 0%, #ff5a1a 40%, #a3180a 62%, transparent 74%) 13px 100% / 61px 100% repeat-x,
+    radial-gradient(ellipse 52px 100% at 50% 100%, #ff7a2a 0%, #c42a0e 38%, #4a0a04 62%, transparent 72%) 40px 100% / 113px 100% repeat-x,
+    radial-gradient(ellipse 34px 70% at 50% 100%, #ff8c3a 0%, #d0350f 45%, transparent 72%) 71px 100% / 89px 100% repeat-x,
+    linear-gradient(to top, #ff6a1a99, #ff3a0a33 25%, transparent 45%);
+  filter: blur(3px) saturate(1.2);
+  mix-blend-mode: screen;
+  transform-origin: bottom;
+  animation: tremular 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes queimar {
+  from { --chama: -14%; }
+  to { --chama: 112%; }
+}
+
+@keyframes tremular {
+  33% { transform: scaleY(1.12); background-position: 6px 100%, 2px 100%, 48px 100%, 63px 100%, 0 0; }
+  66% { transform: scaleY(0.94); background-position: -4px 100%, 20px 100%, 34px 100%, 80px 100%, 0 0; }
+  to { transform: scaleY(1.08); background-position: 10px 100%, 8px 100%, 44px 100%, 66px 100%, 0 0; }
+}
+
+/* Magia */
+.troca-magia {
+  animation: dissipar 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.troca-magia .troca-veu {
+  -webkit-mask: radial-gradient(circle at 50% 55%, transparent var(--raio), #000 calc(var(--raio) + 5vmax));
+  mask: radial-gradient(circle at 50% 55%, transparent var(--raio), #000 calc(var(--raio) + 5vmax));
+}
+
+.circulo-magico {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: calc(var(--raio) * 2 + 5vmax);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  color: #8fdcff;
+  filter: drop-shadow(0 0 10px #8fdcff) drop-shadow(0 0 30px #8fdcff88);
+  animation: girar 4s linear infinite, apagar 1s ease-in forwards;
+}
+
+@keyframes dissipar {
+  from { --raio: 0px; }
+  to { --raio: 90vmax; }
+}
+
+@keyframes apagar {
+  30% { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ==========================================================================
+   NOME RISCADO: na Verdade o nome volta a aparecer, ele não consegue apagá-lo
+   ========================================================================== */
 
 .slashed-surname {
   position: relative;
   display: inline-block;
-  color: var(--text-muted);
-  opacity: 0.72;
-  margin: 0 0.25rem;
+  color: rgb(var(--dim));
 }
 
 .slashed-surname::after {
   content: "";
   position: absolute;
-  left: -6%;
-  right: -6%;
-  top: 52%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ef4444 15%, #dc2626 85%, transparent);
-  transform: rotate(-7deg);
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+  left: -5%;
+  right: -5%;
+  top: 55%;
+  height: 0.07em;
+  min-height: 2px;
+  background: #b3261e;
+  transform: rotate(-6deg);
 }
 
-.slashed-surname::before {
-  content: "";
-  position: absolute;
-  left: -4%;
-  right: -4%;
-  top: 46%;
-  height: 1.5px;
-  background: rgba(255, 120, 120, 0.7);
-  transform: rotate(4deg);
+[data-lens="verdade"] .slashed-surname {
+  color: rgb(var(--ink));
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
+[data-lens="verdade"] .slashed-surname::after {
+  opacity: 0.25;
+}
+
+/* ==========================================================================
+   CÍRCULO DE TRANSMUTAÇÃO (Matriz)
+   ========================================================================== */
+
+@keyframes girar {
   to { transform: rotate(360deg); }
 }
 
-@keyframes spin-reverse-slow {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+.gira-lento {
+  animation: girar 90s linear infinite;
+  transform-origin: 200px 200px;
 }
 
-.ring-spin {
-  animation: spin-slow 48s linear infinite;
-  transform-origin: center;
+.gira-reverso {
+  animation: girar 60s linear infinite reverse;
+  transform-origin: 200px 200px;
 }
 
-.ring-spin-reverse {
-  animation: spin-reverse-slow 34s linear infinite;
-  transform-origin: center;
+.inscricao {
+  font-family: "IM Fell English SC", Georgia, serif;
+  font-size: 13px;
+  fill: rgb(var(--metal));
 }
 
-.arcane-card {
-  background: var(--bg-glass);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 14px 35px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
-  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
-}
-
-.arcane-card:hover {
-  border-color: var(--border-strong);
-}
-
-.orbit-node {
+.no-orbita {
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.orbit-node:hover {
-  transform: translate(-50%, -50%) scale(1.09);
+.no-orbita:hover {
+  transform: translate(-50%, -50%) scale(1.06);
 }
 
-.orbit-node.active-node .node-avatar-ring {
-  border-color: var(--accent-main);
-  box-shadow: 0 0 22px var(--accent-main), inset 0 0 12px var(--accent-main);
-  transform: scale(1.06);
+.no-orbita .anel-retrato {
+  border: 2px solid rgb(var(--line));
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.orbit-node.active-node .node-label {
-  background: var(--accent-main);
-  color: #090a0f;
-  font-weight: 700;
-  border-color: var(--accent-main);
+.no-orbita[aria-pressed="true"] .anel-retrato {
+  border-color: rgb(var(--accent));
+  box-shadow: 0 0 0 4px rgb(var(--abyss)), 0 0 0 5px rgb(var(--accent) / 0.6), 0 0 30px rgb(var(--accent) / 0.6);
 }
 
-.connection-line {
-  stroke: rgba(255, 255, 255, 0.14);
-  stroke-width: 1.5;
-  stroke-dasharray: 5 5;
-  transition: all 0.4s ease;
+.no-orbita[aria-pressed="true"] .nome-no {
+  color: rgb(var(--accent));
 }
 
-.connection-line.active-line {
-  stroke: var(--accent-main);
-  stroke-width: 2.8;
+.elo {
+  stroke: rgb(var(--line) / 0.6);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 5;
+  transition: stroke 0.4s, stroke-width 0.4s;
+}
+
+.elo.ativo {
+  stroke: rgb(var(--accent));
+  stroke-width: 2;
   stroke-dasharray: none;
-  filter: drop-shadow(0 0 6px var(--accent-main));
 }
 
-.portrait-frame {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border-strong);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+/* ==========================================================================
+   ARCO OGIVAL: moldura gótica para retratos (mask responsiva)
+   ========================================================================== */
+
+.arco,
+.arco-moldura {
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140' preserveAspectRatio='none'><path d='M0 140V52C0 22 22 6 50 0c28 6 50 22 50 52v88z'/></svg>") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140' preserveAspectRatio='none'><path d='M0 140V52C0 22 22 6 50 0c28 6 50 22 50 52v88z'/></svg>") center / 100% 100% no-repeat;
 }
 
-.portrait-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 40px rgba(9, 10, 15, 0.85);
-  pointer-events: none;
+.arco-moldura {
+  background: linear-gradient(rgb(var(--metal)), rgb(var(--line)));
+  padding: 3px;
 }
 
-.portrait-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+.arco img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.portrait-frame:hover .portrait-img {
+.arco:hover img {
   transform: scale(1.04);
 }
 
-.soul-bar-track {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  height: 10px;
-  border-radius: 999px;
+/* Frasco de densidade anímica */
+.frasco {
+  width: 54px;
+  height: 118px;
+  border: 2px solid rgb(var(--metal));
+  border-radius: 24px 24px 30px 30px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.frasco-liquido {
+  position: absolute;
+  inset: auto 0 0;
+  background: linear-gradient(#e0592a, #6b1408);
+  transition: height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-lens="verdade"] .frasco-liquido {
+  background: linear-gradient(#bfeaff, #1f6d96);
+}
+
+/* ==========================================================================
+   MANUSCRITO (História): capitular e linha do tempo
+   ========================================================================== */
+
+.capitular > p:first-child::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 4.4em;
+  line-height: 0.8;
+  padding: 0.06em 0.12em 0 0;
+  color: rgb(var(--accent));
+}
+
+.capitular p + p {
+  margin-top: 1.1rem;
+}
+
+.linha-tempo {
+  position: relative;
+}
+
+.linha-tempo::before {
+  content: "";
+  display: none;
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 19px;
+  width: 1px;
+  background: linear-gradient(transparent, rgb(var(--metal) / 0.7), transparent);
+}
+
+/* A linha vertical só aparece no palco; no celular os marcos ficam em fila */
+@media (min-width: 1024px) and (min-height: 640px) {
+  .linha-tempo::before {
+    display: block;
+  }
+}
+
+.marco {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 1px solid rgb(var(--line));
+  border-radius: 50%;
+  background: rgb(var(--abyss));
+  font-family: "IM Fell English SC", Georgia, serif;
+  font-size: 0.85rem;
+  transition: border-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.marco.ativo {
+  border-color: rgb(var(--accent));
+  color: rgb(var(--accent));
+  box-shadow: 0 0 18px rgb(var(--accent) / 0.5);
+}
+
+/* Iluminura do ato: página de manuscrito, levemente inclinada, surgindo ao trocar de ato */
+.iluminura {
+  transform: rotate(1.5deg);
+  box-shadow: 0 18px 40px -12px #000;
+  animation: surgir 0.6s ease-out;
+}
+
+@keyframes surgir {
+  from { opacity: 0; transform: rotate(1.5deg) translateY(8px); }
+}
+
+/* ==========================================================================
+   MONTANHA (Casa Vaelor)
+   ========================================================================== */
+
+.estrato {
+  cursor: pointer;
+  transition: opacity 0.35s;
+}
+
+.estrato:focus-visible {
+  outline: none;
+}
+
+.estrato:focus-visible rect {
+  stroke: rgb(var(--accent));
+  stroke-width: 2;
+}
+
+/* ==========================================================================
+   SELOS DE CERA (Atlas)
+   ========================================================================== */
+
+/* Cera de lacre: selos do Atlas e o sinete da barra */
+.cera {
+  background: radial-gradient(circle at 35% 30%, var(--wax-light), var(--wax-dark) 75%);
+  border-radius: 48% 52% 50% 46% / 50% 46% 54% 50%;
+  box-shadow: 0 3px 8px #000c, inset 0 -2px 4px #0007, inset 0 2px 3px #fff3;
+  color: #f3dcc0;
+  font-family: var(--font-display);
+}
+
+.selo {
+  transition: transform 0.25s;
+}
+
+.selo:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.selo[aria-pressed="true"] {
+  transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 3px rgb(var(--abyss) / 0.8), 0 0 0 4px rgb(var(--accent)), 0 0 24px rgb(var(--accent));
+}
+
+/* ==========================================================================
+   DIÁRIO: livro com capa e folhas que viram (DiaryPage.jsx)
+   --pw / --ph = tamanho de uma página, calculado em JS
+   ========================================================================== */
+
+.livro-mesa {
+  perspective: 2400px;
+  display: flex;
+  justify-content: center;
+}
+
+.livro-janela {
+  position: relative;
+  width: calc(var(--pw) * 2);
+  height: var(--ph);
+}
+
+.livro-janela.simples {
+  width: var(--pw);
   overflow: hidden;
 }
 
-.soul-bar-fill {
+.livro {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.9s cubic-bezier(0.6, 0.05, 0.3, 1);
+}
+
+.simples .livro {
+  width: calc(var(--pw) * 2);
+  left: calc(var(--pw) * -1);
+}
+
+.folha {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
   height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent-crimson), var(--accent-main));
-  box-shadow: 0 0 12px var(--accent-main);
-  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.6, 0.05, 0.3, 1);
+  cursor: pointer;
 }
 
-body.soul-truth-mode .soul-bar-fill {
-  background: linear-gradient(90deg, #0284c7, #38bdf8, #f59e0b);
+.folha.virada {
+  transform: rotateY(-180deg);
 }
 
-.nav-tab {
-  border-bottom: 2px solid transparent;
-  color: var(--text-secondary);
-  transition: all 0.25s ease;
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  overflow: hidden;
 }
 
-.nav-tab:hover {
-  color: var(--text-primary);
+.face.verso {
+  transform: rotateY(180deg);
 }
 
-.nav-tab.active-tab {
-  border-bottom-color: var(--accent-main);
-  color: var(--accent-main);
+.pagina {
+  background-color: #d9c9a3;
+  background-image:
+    linear-gradient(90deg, #00000038, transparent 7%),
+    url("/assets/textura-pergaminho.webp");
+  background-size: auto, 360px;
+  color: #2b1d12;
+  padding: calc(var(--ph) * 0.08) calc(var(--pw) * 0.1) calc(var(--ph) * 0.1);
+  font-size: clamp(14px, calc(var(--pw) * 0.034), 18px);
+  line-height: 1.6;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.face.verso.pagina {
+  background-image:
+    linear-gradient(270deg, #00000038, transparent 7%),
+    url("/assets/textura-pergaminho.webp");
 }
 
-::-webkit-scrollbar-track {
-  background: #090a0f;
+/* Cada entrada flui em colunas da altura da página; cada página mostra uma coluna */
+.fluxo {
+  height: 100%;
+  column-count: 1;
+  column-gap: 80px;
+  column-fill: auto;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #262b3d;
-  border-radius: 4px;
+.fluxo h2 {
+  font: 400 1.9em/1.1 "UnifrakturMaguntia", serif;
+  color: #3a0c08;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-main);
+/* Títulos escritos dentro do texto da entrada (# e ###): menores que o título da entrada */
+.fluxo :is(h1, h3) {
+  margin-top: 0.8em;
+  font: 400 1.4em/1.15 "UnifrakturMaguntia", serif;
+  color: #3a0c08;
 }
 
-/* Elementos gerados pelo Markdown do Diário (o preflight do Tailwind zera estes estilos) */
-.chapter-prose h2,
-.chapter-prose h3 {
-  font-weight: 700;
-  color: #f5f5f4;
-  padding-top: 0.5rem;
+.meta-pagina {
+  font-family: "IM Fell English SC", Georgia, serif;
+  color: #6a5636;
+  line-height: 1.35;
 }
 
-.chapter-prose h2 { font-size: 1.5rem; }
-.chapter-prose h3 { font-size: 1.25rem; }
+.fluxo p,
+.fluxo ul,
+.fluxo ol,
+.fluxo blockquote {
+  margin-top: 0.8em;
+}
 
-.chapter-prose blockquote {
+.fluxo blockquote {
   font-style: italic;
-  border-left: 4px solid var(--accent-main);
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.75rem 1rem;
-  border-radius: 0 0.5rem 0.5rem 0;
+  padding-left: 1em;
+  border-left: 2px solid #7a2a1a;
 }
 
-.chapter-prose ul { list-style: disc; padding-left: 1.5rem; }
-.chapter-prose ol { list-style: decimal; padding-left: 1.5rem; }
-
-.chapter-prose hr { border-color: rgba(255, 255, 255, 0.1); }
-
-.chapter-prose a {
-  color: var(--accent-main);
-  text-decoration: underline;
+/* Esboço colado na página (![legenda](imagem) no Markdown): inteiro numa página só,
+   no máximo ~55% da altura dela, com moldura de papel, tom sépia e leve inclinação. */
+.esboco {
+  display: block;
+  break-inside: avoid;
+  margin: 1.1em 0;
+  text-align: center;
 }
 
-/* No original o CDN do Tailwind era injetado depois do style.css: utilitários vencem. */
+.esboco img {
+  display: block;
+  margin: 0 auto;
+  max-width: 92%;
+  max-height: calc(var(--ph) * 0.55);
+  width: auto;
+  border: 5px solid #efe4c6;
+  box-shadow: 0 6px 14px -4px #0008;
+  filter: sepia(0.35) contrast(0.95);
+  transform: rotate(-1.4deg);
+}
+
+.esboco:nth-of-type(even) img {
+  transform: rotate(1.2deg);
+}
+
+.esboco-legenda {
+  display: block;
+  margin-top: 0.5em;
+  font-style: italic;
+  font-size: 0.85em;
+  color: #6a5636;
+}
+
+.fluxo ul { list-style: disc; padding-left: 1.4em; }
+.fluxo ol { list-style: decimal; padding-left: 1.4em; }
+.fluxo hr { margin: 1.2em 25%; border-color: #6a563666; }
+.fluxo a { color: #7a2a1a; text-decoration: underline; }
+
+.numero-pagina {
+  position: absolute;
+  bottom: calc(var(--ph) * 0.035);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "IM Fell English SC", Georgia, serif;
+  color: #6a5636;
+  font-size: 0.85em;
+}
+
+/* Tinta invisível (||texto|| no Markdown): rasura na Máscara, brilho azul na Verdade */
+.tinta {
+  color: transparent;
+  background: repeating-linear-gradient(100deg, #2b1d1222 0 5px, transparent 5px 9px);
+  transition: color 0.8s, text-shadow 0.8s;
+}
+
+[data-lens="verdade"] .tinta {
+  color: #0f5a86;
+  background: none;
+  text-shadow: 0 0 10px #8fdcff;
+}
+
+/* Couro gravado escurecido nas bordas, como uma capa gasta pelo manuseio */
+.capa {
+  background:
+    radial-gradient(circle at 50% 40%, transparent 20%, #12050699 75%),
+    url("/assets/textura-couro.webp") center / 300px;
+  border-radius: 3px 10px 10px 3px;
+  box-shadow:
+    inset 0 0 0 12px #2a0f12,
+    inset 0 0 0 13px #6e5532,
+    inset 0 0 0 18px #2a0f12,
+    inset 0 0 0 19px #6e553288;
+  color: #b08d57;
+}
+
+.contracapa {
+  background: #24100f;
+  color: #a08458;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgb(var(--abyss)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 4px; }
+
+/* Utilitários por último: vencem as classes acima em especificidade igual */
 @tailwind utilities;

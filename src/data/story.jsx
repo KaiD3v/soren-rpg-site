@@ -1,6 +1,7 @@
 export const ACTS = [
   {
     act: "Ato I",
+    image: "/assets/ato-1.webp",
     title: "A Centelha na Cinza",
     year: "Infância (0 – 7 Anos)",
     location: "Subsolos de Enxofre, Cidadela Vaelor",
@@ -15,6 +16,7 @@ export const ACTS = [
   },
   {
     act: "Ato II",
+    image: "/assets/ato-2.webp",
     title: "O Crisol de Sangue e o Pacto Infernal",
     year: "O Ritual (7 Anos)",
     location: "Câmaras Subterrâneas do Projeto Quimera",
@@ -29,6 +31,7 @@ export const ACTS = [
   },
   {
     act: "Ato III",
+    image: "/assets/ato-3.webp",
     title: "O Prodígio de Mercúrio",
     year: "Adolescência (7 – 17 Anos)",
     location: "Torres Superiores da Casa Vaelor",
@@ -43,6 +46,7 @@ export const ACTS = [
   },
   {
     act: "Ato IV",
+    image: "/assets/ato-4.webp",
     title: "O Solvente Universal",
     year: "A Ruptura (17 Anos)",
     location: "Arquivos Restritos & Salão Principal",
@@ -57,6 +61,7 @@ export const ACTS = [
   },
   {
     act: "Ato V",
+    image: "/assets/ato-5.webp",
     title: "A Hipocrisia da Cinza",
     year: "Dias Atuais",
     location: "Em Exílio pelo Mundo",
