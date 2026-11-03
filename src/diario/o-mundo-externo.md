@@ -29,6 +29,8 @@ Pergunta em aberto: por que desperdiçam uma vida inteira nisso, quando o mundo 
 
 ||Vi uma aurora. Li sobre elas em três tratados de Mercúrio, desenhei o diagrama da refração aos doze anos e acreditei que entendia. Não entendia nada. Fiquei parado na neve até perder a sensibilidade dos dedos.||
 
-||Toquei uma raiz-de-gelo viva, com a seiva ainda correndo. Nas gravuras dos herbários ela é cinza. Na mão, é quase azul, da cor do cristal do colar. Passei a noite inteira desenhando-a de novo, do jeito certo.||
+||Toquei uma [[raiz-de-gelo|raiz-de-gelo]] viva, com a seiva ainda correndo. Nas gravuras dos herbários ela é cinza. Na mão, é quase azul, da cor do cristal do colar. Passei a noite inteira desenhando-a de novo, do jeito certo.||
+
+![Raiz-de-gelo, desenhada do natural na mesma noite](/assets/diario/raiz-de-gelo.svg)
 
 ||Lyra teria adorado tudo isso. Foi ela quem me deu o primeiro herbário. Eu disse que eram desenhos para crianças.||

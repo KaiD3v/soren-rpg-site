@@ -971,6 +971,16 @@ body::after {
   text-shadow: 0 0 10px #8fdcff;
 }
 
+/* Link dentro da tinta invisível: some junto com ela na Máscara (e não fica clicável) */
+.tinta :is(a.verbete-link, .verbete-ausente) {
+  color: inherit;
+  text-decoration-color: currentColor;
+}
+
+[data-lens="mascara"] .tinta a.verbete-link {
+  pointer-events: none;
+}
+
 /* Couro gravado escurecido nas bordas, como uma capa gasta pelo manuseio */
 .capa {
   background:
