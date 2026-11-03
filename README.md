@@ -149,7 +149,7 @@ Texto em Markdown, na voz do Soren. *itálico*, **negrito**, > citações, lista
 O que ele escreve e ||o que ele não admite|| fica na mesma frase.
 ```
 
-- `date` (AAAA-MM-DD) define a ordem no livro e no sumário. O link `/diario/<slug>` abre o livro direto na entrada.
+- `date` define a ordem no livro e no sumário. Aceita `2026-11-08`, `08-11-2026` ou `08/11/2026`. Entradas sem data (ou com `00-00-0000`) vão para o fim do livro, ordenadas pela `session`. O link `/diario/<slug>` abre o livro direto na entrada.
 - `location` é opcional e aparece abaixo da data, no topo da entrada.
 - O diário é paginado automaticamente; uma entrada longa ocupa quantas páginas precisar.
 - Imagens vão em `public/assets/diario/`. Elas aparecem sempre inteiras numa página só (no máximo cerca de 55% da altura).

@@ -1,6 +1,6 @@
 ---
-session: Prólogo
-date: 2026-11-01
+session: Prólogo I
+date: 00-00-0000
 title: Por Que Escrevo
 location: Em Exílio pelo Mundo
 ---

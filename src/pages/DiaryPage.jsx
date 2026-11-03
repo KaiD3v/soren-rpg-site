@@ -198,6 +198,8 @@ function useBookSize(ref) {
 
 function usePageCounts(measureRef, size) {
   const [counts, setCounts] = useState(null);
+  // Mede de novo quando o tamanho muda e também quando as entradas mudam: ao editar um .md com o
+  // diário aberto, o Vite troca o texto sem recarregar, e a contagem antiga deixaria páginas inalcançáveis.
   useLayoutEffect(() => {
     if (!size) return;
     const measure = () =>
@@ -220,7 +222,7 @@ function usePageCounts(measureRef, size) {
         img.removeEventListener("load", measure);
         img.removeEventListener("error", measure);
       });
-  }, [measureRef, size]);
+  }, [measureRef, size, ENTRIES]);
   return counts;
 }
 

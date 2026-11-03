@@ -1,4 +1,5 @@
 import { resolveVerbetes } from "./compendium.js";
+import { compareEntries, parseDate } from "./dates.js";
 import { renderMarkdown } from "./markdown.js";
 import { parseFrontmatter } from "./frontmatter.js";
 
@@ -9,6 +10,11 @@ const files = import.meta.glob("../diario/*.md", { query: "?raw", import: "defau
 export const ENTRIES = Object.entries(files)
   .map(([path, raw]) => {
     const { meta, body } = parseFrontmatter(raw);
-    return { ...meta, slug: path.split("/").pop().replace(/\.md$/, ""), html: resolveVerbetes(renderMarkdown(body)) };
+    return {
+      ...meta,
+      date: parseDate(meta.date), // normalizada para AAAA-MM-DD, ou null sem data
+      slug: path.split("/").pop().replace(/\.md$/, ""),
+      html: resolveVerbetes(renderMarkdown(body)),
+    };
   })
-  .sort((a, b) => (a.date ?? "").localeCompare(b.date ?? ""));
+  .sort(compareEntries);
