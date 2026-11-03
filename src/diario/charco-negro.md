@@ -26,15 +26,23 @@ Passei o resto da tarde me preparando. Pietro me emprestou roupas nobres. Ficara
 
 O luxo da casa não me interessou. Dois objetos, sim. Numa sala lateral havia uma estátua com inscrições num idioma que, pelo traço, deixou de ser falado há séculos, e, diante dela, um espelho de ouro montado num suporte articulado. Estava virado para a estátua e a refletia inteira, mas girava em outras direções, inclusive para o alto, como se também servisse para observar os astros. Mexi nos dois. Não entendi o propósito do espelho sem tempo e sem ferramentas: ninguém posiciona um espelho de ouro diante de uma estátua por decoração. Também não copiei as inscrições, um erro que pretendo corrigir. Naquele momento, porém, formei uma opinião sobre Voss: um homem que guarda coisas assim deve ser alguém que pensa.
 
+![A estátua da mansão Voss, de memória: três figuras de costas umas para as outras, segurando um disco. As inscrições ficaram por copiar](/assets/diario/estatua-esboco.webp)
+
+![O espelho de ouro, no ângulo em que o encontrei. O aro gira em dois eixos; a estátua só aparece inteira nesta posição](/assets/diario/espelho-esboco.webp)
+
 Na sala de jantar havia um cão preto, enorme e de pelo espesso, e uma corva tão bem cuidada que as penas pareciam óleo. O cão rosnou quando o toquei, mas não recuou nem mordeu. A corva ficou me observando o jantar inteiro. Dos animais comuns, o corvo é o mais inteligente; li isso em mais de um tratado e não precisei de mais nada para confirmar.
 
 O banquete foi excelente. Voss, decepcionante. Passou a noite discorrendo sobre a gastronomia do pântano: o tempero do peixe, a época certa da enguia. Quando perguntei sobre a estátua, o espelho e os animais, respondeu: "Ah, não sei. Isso está na minha família há muito tempo, só mantenho por causa disso." Um homem que tem em casa um idioma morto e prefere falar de enguias. Minha opinião sobre ele caiu no mesmo jantar em que se formou.
 
 Só uma vez a conversa dele valeu a pena, e foi por acaso. O prato principal era o *Faisão Negro do Pântano*, uma ave da região que imita a voz de pessoas, atrai quem a escuta para longe da trilha e então ataca. Voss contou isso como curiosidade de cardápio, entre um gole e outro. Uma ave predadora que usa a voz humana como isca, e o homem só sabe dizer que a carne é macia. É, de fato. Mas o que me interessa são as penas. Uma criatura que reproduz sons com essa fidelidade deve carregar alguma propriedade ressonante no corpo, e plumas costumam ser bons condutores para preparados que alteram ou projetam a voz. Se a ave é comum por aqui, conseguir algumas não deve ser difícil. Difícil vai ser sobreviver à isca.
 
+![Faisão Negro do Pântano. A cauda é longa demais para uma ave que caça no chão; serve para outra coisa](/assets/diario/faisao-esboco.webp)
+
 **O pedido.** Depois da sobremesa, Voss revelou o motivo do convite. Há alguns anos, pessoas desaparecem nos vilarejos da região. O caso mais recente foram os pais de Elina Corvin, uma menina que esteve à mesa conosco a noite toda, chorando em silêncio. Elenor sentou-se ao lado dela e passou boa parte do jantar conversando baixo com a menina. Não ouvi o que disseram. Elina parou de chorar, o que já é mais do que qualquer um de nós conseguiu.
 
 O grupo aceitou ajudar. Eu impus uma condição: quero a corva. Voss concordou "por um bem maior". Ainda nos deu uma semana de hospedagem e comida numa de suas estalagens. Ela agora viaja comigo e se chama Nox. ||É o primeiro ser vivo que tenho por escolha própria, e não por designação da Casa.||
+
+![Nox, na primeira noite, já de olho na janela](/assets/diario/nox-esboco.webp)
 
 ---
 
@@ -52,7 +60,9 @@ No Vilarejo dos Pescadores, Sirius me repassou o que tinha ouvido de um velho mo
 - A casa desse homem está abandonada. Sirius e Elenor a vasculharam e não encontraram nada.
 - Um garotinho afirma ter visto uma criatura estranha depois que uma amiga sumiu. Esse sumiço foi de dia, o que não combina com o resto.
 
-Fui com Sirius falar com o garoto (Elenor tinha ido fazer outra coisa e não voltou; o resto do grupo também sumiu, cada um para um lado). O menino nos mostrou um desenho. Traço infantil, proporções erradas, mas inconfundível: cabeça e asas de águia, corpo de leão. Um grifo. Uma criança não inventa um grifo com essa precisão de quem nunca viu um.
+Fui com Sirius falar com o garoto (Elenor tinha ido fazer outra coisa e não voltou; o resto do grupo também sumiu, cada um para um lado). O menino nos mostrou um desenho. Traço infantil, feito com medo: uma fera maior que as árvores, juba eriçada, olhos vermelhos, asas, garras e uma cauda cheia de espinhos. Crianças exageram tudo o que as assusta. Descontado o exagero, sobram corpo de felino, asas e garras de ave de rapina. Um grifo, ou o que uma criança faria de um. Ninguém desenha com tanta insistência algo que nunca viu.
+
+![O desenho do menino, que ele me deixou levar](/assets/diario/grifo-do-menino.webp)
 
 Antes de sair, perguntamos à mãe do menino onde vivia o caçador que salvou Boca-Mole. Ela sabia. *Jim Blackwood*, o caçador, desmentiu a história inteira: encontrou Garrick bêbado, desmaiado na floresta, com um arranhão pequeno na perna, e o levou à curandeira. Arranhão. Eu vi aquela perna à luz da taverna: a pele escura, repuxada, afundada onde deveria haver músculo. Não é o que um arranhão deixa. Blackwood deu de ombros e disse que a curandeira saberia explicar melhor o que aconteceu depois. Já era tarde, e Sirius e eu concordamos em deixar a curandeira para outro dia. Disse ainda que viu goblins bem equipados na mata, organizados demais para agirem por conta própria. Alguém os comanda.
 
@@ -67,6 +77,8 @@ Hesitei. Sirius não. Fui.
 O grito nos levou até a origem da fumaça: um acampamento goblin, com a fogueira ainda acesa. No meio dele, um lobo de pé sobre duas patas, caído e lutando contra dois goblins. Levei um instante para reconhecer nele o Manjiro, e outro para entender que o cheiro de cachorro molhado nunca tinha sido falta de banho. Goblins altos, quase da minha estatura, o que goblins não são. A luta foi pior do que deveria ter sido: Sirius e Manjiro saíram muito feridos, e o lupino só está vivo porque Sirius o curou no último instante, com uma luz que eu não soube nomear. Senti aquela luz na pele como se fosse comigo, e não era. O incômodo de antes agora tem forma, ainda que não tenha nome. Os dois goblins desviaram dos meus dois primeiros ataques. Dois. Registro isso com o desgosto devido. No terceiro, matei um. O outro, prendi no gelo.
 
 **Zorg.** O goblin preso se chama Zorg, e fala. Contou que o covil é liderado por um xamã que, com magia, os torna maiores e mais fortes. Contou também que faz parte de um grupo que pretende trair esse xamã e tomar o lugar dele, e que, se o ajudarmos, dividirá conosco o ouro saqueado.
+
+![Zorg, de pulsos amarrados. Braços e pernas longos demais para um goblin](/assets/diario/zorg-esboco.webp)
 
 Criaturas daquelas manipulando magia. Escrever isso já me dá náusea. Não demonstrei nada.
 
