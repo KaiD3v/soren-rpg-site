@@ -58,7 +58,7 @@ export default function CompendiumPage({ truthMode }) {
             ))}
           </nav>
 
-          <div key={pageKey} className="tomo-espelho" onClick={followLink}>
+          <div key={pageKey} className="tomo-espelho md:min-h-[560px] stage:min-h-0 stage:h-full" onClick={followLink}>
             {board ? (
               <BoardSpread truthMode={truthMode} />
             ) : entry ? (

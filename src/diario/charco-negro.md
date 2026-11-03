@@ -8,25 +8,29 @@ Duas semanas presos no Charco Negro. A caravana atolou no barro na entrada da re
 
 Desde então a rotina se resume à taverna Pé Atolado, a quartos que rangem a cada passo e a peixe com gosto de barro no almoço e no jantar. Os moradores vivem da pesca e não parecem ter ambição de nada além disso. Observei que comem o mesmo peixe que eu sem nenhuma careta. Ou o paladar deles foi corroído pelo hábito, ou sou eu que não sei mais comer como pobre.
 
-**Sobre os músicos.** Dois dos viajantes presos comigo, um tal de Pietro e uma humana chamada Dafynie, decidiram animar uma plateia de quase ninguém. Desafinaram nas cordas e na voz, com notável consistência. Pietro ainda recitou um poema sobre quatro heróis que derrubaram um tirano e hoje são caçados como criminosos. A taverna inteira aplaudiu, e não foi pela técnica. Registro o fenômeno: entre os Vazios, a convicção de quem se apresenta vale mais do que a afinação. ||O poema me incomodou mais do que a música. Derrubar um tirano e ser caçado por isso me pareceu uma descrição muito exata de algo que conheço.||
+**Sobre os músicos.** Dois dos viajantes presos comigo, um tal de [[pietro|Pietro]] e uma humana chamada [[dafynie|Dafynie]], decidiram animar uma plateia de quase ninguém. Desafinaram nas cordas e na voz, com notável consistência. Pietro ainda recitou um poema sobre quatro heróis que derrubaram um tirano e hoje são caçados como criminosos. A taverna inteira aplaudiu, e não foi pela técnica. Registro o fenômeno: entre os Vazios, a convicção de quem se apresenta vale mais do que a afinação. ||O poema me incomodou mais do que a música. Derrubar um tirano e ser caçado por isso me pareceu uma descrição muito exata de algo que conheço.||
 
 Pietro, aliás, não é exatamente como os outros. A pele é pálida demais para quem passou duas semanas sob o mesmo sol que nós, e ele evita a janela nas horas mais claras. Os caninos também me pareceram longos. Pode ser só um humano esquisito, e este pântano tem vários. Mas anotei.
 
 Marta, a estalajadeira, ficou tão satisfeita com a casa cheia que ofereceu uma refeição gratuita a todos nós, os viajantes presos. Bastou isso para o grupo inteiro se aglomerar no balcão. Peguei meu prato e voltei para o canto, sob o manto velho, anotando o que dava para anotar. Comida de graça não me obriga a conversar.
 
-Fui interrompido por Elenor, uma humana de modos nobres. Fez perguntas sobre minha origem; respondi o mínimo, que é o máximo que ofereço a qualquer um. Perguntou se eu gostava de livros, e aparentemente a resposta estava escrita na minha cara, porque ela prometeu me dar alguns quando sairmos deste lugar. Não sei o que ela quer em troca. Ainda.
+Fui interrompido por [[elenor|Elenor]], uma humana de modos nobres. Fez perguntas sobre minha origem; respondi o mínimo, que é o máximo que ofereço a qualquer um. Perguntou se eu gostava de livros, e aparentemente a resposta estava escrita na minha cara, porque ela prometeu me dar alguns quando sairmos deste lugar. Não sei o que ela quer em troca. Ainda.
 
-**O convite.** Mais tarde, um homem chamado Osrin veio à nossa mesa: Sir Velarian Voss, a figura mais importante da região, nos convidava para jantar em sua mansão naquela mesma noite. Um nobre que convida forasteiros falidos para jantar ou é tolo, ou precisa de alguma coisa. Com os bolsos como estão, aceitamos de qualquer jeito.
+**O convite.** Mais tarde, um homem chamado Osrin veio à nossa mesa: [[velarian-voss|Sir Velarian Voss]], a figura mais importante da região, nos convidava para jantar em sua mansão naquela mesma noite. Um nobre que convida forasteiros falidos para jantar ou é tolo, ou precisa de alguma coisa. Com os bolsos como estão, aceitamos de qualquer jeito.
 
 Antes de ir, interroguei Durval Valecinza, o mendigo do canto da taverna. Segundo ele, Voss é adorado por todos: caridoso, ajuda os necessitados, trata o pescador e o mercador do mesmo jeito. Durval também me contou que a natureza conversa com ele, só que ele não entende, porque não fala a língua dela. Agradeci e saí antes que ele me apresentasse aos sapos.
 
 Passei o resto da tarde me preparando. Pietro me emprestou roupas nobres. Ficaram justas: ele é mais baixo e, ao que tudo indica, nunca precisou abrir espaço para uma cauda.
 
-**A mansão Voss.** Leofric Corvane, o cocheiro, nos buscou ao anoitecer numa carruagem luxuosa. Dessa carroça, confesso, não reclamo. Na mansão, quem nos recebeu foi Osric Varnholt, um velho largo e forte, mais parecido com um soldado aposentado do que com um mordomo. Anotei isso.
+**A mansão Blackmoor.** Leofric Corvane, o cocheiro, nos buscou ao anoitecer numa carruagem luxuosa. Dessa carroça, confesso, não reclamo. A mansão fica num rochedo acima do pântano, longe o bastante da vila para não sentir o cheiro dela e perto o bastante para vê-la inteira das janelas. Blackmoor, segundo a placa no portão. Uma árvore no brasão e nos estandartes, e nenhuma árvore no pântano lá embaixo parecida com ela.
+
+![Mansão Blackmoor, vista da estrada do pântano. Esboçada de memória na mesma noite](/assets/diario/blackmoor-esboco.webp)
+
+Na mansão, quem nos recebeu foi Osric Varnholt, um velho largo e forte, mais parecido com um soldado aposentado do que com um mordomo. Anotei isso.
 
 O luxo da casa não me interessou. Dois objetos, sim. Numa sala lateral havia uma estátua com inscrições num idioma que, pelo traço, deixou de ser falado há séculos, e, diante dela, um espelho de ouro montado num suporte articulado. Estava virado para a estátua e a refletia inteira, mas girava em outras direções, inclusive para o alto, como se também servisse para observar os astros. Mexi nos dois. Não entendi o propósito do espelho sem tempo e sem ferramentas: ninguém posiciona um espelho de ouro diante de uma estátua por decoração. Também não copiei as inscrições, um erro que pretendo corrigir. Naquele momento, porém, formei uma opinião sobre Voss: um homem que guarda coisas assim deve ser alguém que pensa.
 
-![A estátua da mansão Voss, de memória: três figuras de costas umas para as outras, segurando um disco. As inscrições ficaram por copiar](/assets/diario/estatua-esboco.webp)
+![A estátua de Blackmoor, de memória: três figuras de costas umas para as outras, segurando um disco. As inscrições ficaram por copiar](/assets/diario/estatua-esboco.webp)
 
 ![O espelho de ouro, no ângulo em que o encontrei. O aro gira em dois eixos; a estátua só aparece inteira nesta posição](/assets/diario/espelho-esboco.webp)
 
@@ -38,7 +42,7 @@ Só uma vez a conversa dele valeu a pena, e foi por acaso. O prato principal era
 
 ![Faisão Negro do Pântano. A cauda é longa demais para uma ave que caça no chão; serve para outra coisa](/assets/diario/faisao-esboco.webp)
 
-**O pedido.** Depois da sobremesa, Voss revelou o motivo do convite. Há alguns anos, pessoas desaparecem nos vilarejos da região. O caso mais recente foram os pais de Elina Corvin, uma menina que esteve à mesa conosco a noite toda, chorando em silêncio. Elenor sentou-se ao lado dela e passou boa parte do jantar conversando baixo com a menina. Não ouvi o que disseram. Elina parou de chorar, o que já é mais do que qualquer um de nós conseguiu.
+**O pedido.** Depois da sobremesa, Voss revelou o motivo do convite. Há alguns anos, pessoas desaparecem nos vilarejos da região. O caso mais recente foram os pais de Elina Corvin, uma menina que esteve à mesa conosco a noite toda, chorando em silêncio. Foi o próprio Voss quem a chamou para jantar conosco, e ele tentou animá-la mais de uma vez entre um prato e outro. Elenor sentou-se ao lado dela e passou boa parte do jantar conversando baixo com a menina. Não ouvi o que disseram. Elina parou de chorar, o que já é mais do que eu teria conseguido.
 
 O grupo aceitou ajudar. Eu impus uma condição: quero a corva. Voss concordou "por um bem maior". Ainda nos deu uma semana de hospedagem e comida numa de suas estalagens. Ela agora viaja comigo e se chama Nox. ||É o primeiro ser vivo que tenho por escolha própria, e não por designação da Casa.||
 
@@ -52,9 +56,9 @@ O grupo aceitou ajudar. Eu impus uma condição: quero a corva. Voss concordou "
 
 Os desaparecimentos, segundo todos, acontecem à noite e quase sempre no Vilarejo dos Pescadores.
 
-O grupo se dispersou. Fiquei com Manjiro, que, como descobri só mais tarde nesta mesma noite, é um lupino. Na hora, eu só tinha reparado no cheiro: cachorro molhado, constante, que nem o pântano explica. Atribuí à falta de banho. Fui generoso. Juntos, entrevistamos *Amália Moural*, que esvazia canecas como quem cumpre pena. Num inverno, ela colocou os filhos para dormir e de manhã os encontrou mortos, com a janela aberta. Morreram de frio. A casa não tem lareira, e o povo daqui aceita isso como explicação suficiente: inverno, casa pobre, janela aberta. Eu não aceito. Metade das casas do Charco também não tem lareira, e as crianças delas acordam todos os dias. Amália dormiu sob o mesmo teto, na mesma noite, e acordou. E alguém precisa me dizer quem abriu a janela.
+O grupo se dispersou. Fiquei com [[manjiro|Manjiro]], que, como descobri só mais tarde nesta mesma noite, é um lupino. Na hora, eu só tinha reparado no cheiro: cachorro molhado, constante, que nem o pântano explica. Atribuí à falta de banho. Fui generoso. Juntos, entrevistamos *Amália Moural*, que esvazia canecas como quem cumpre pena. Num inverno, ela colocou os filhos para dormir e de manhã os encontrou mortos, com a janela aberta. Morreram de frio. A casa não tem lareira, e o povo daqui aceita isso como explicação suficiente: inverno, casa pobre, janela aberta. Eu não aceito. Metade das casas do Charco também não tem lareira, e as crianças delas acordam todos os dias. Amália dormiu sob o mesmo teto, na mesma noite, e acordou. E alguém precisa me dizer quem abriu a janela.
 
-No Vilarejo dos Pescadores, Sirius me repassou o que tinha ouvido de um velho morador. Registro antes uma impressão que não sei justificar: a presença de Sirius me incomoda. Não pelo que diz ou faz, que até agora foi sensato. É algo anterior a isso, como estar perto demais de uma chama que não esquenta. O sangue ínfero estranha certas coisas antes de a razão saber o que são. Anotado, sem conclusão:
+No Vilarejo dos Pescadores, [[sirius|Sirius]] me repassou o que tinha ouvido de um velho morador. Registro antes uma impressão que não sei justificar: a presença de Sirius me incomoda. Não pelo que diz ou faz, que até agora foi sensato. É algo anterior a isso, como estar perto demais de uma chama que não esquenta. O sangue ínfero estranha certas coisas antes de a razão saber o que são. Anotado, sem conclusão:
 
 - Um homem conhecido pela bondade desapareceu certa noite. Tempos depois, o velho afirma tê-lo visto voltar, também à noite. Na mesma noite, uma garota desapareceu. A família dela abandonou a aldeia.
 - A casa desse homem está abandonada. Sirius e Elenor a vasculharam e não encontraram nada.
@@ -114,7 +118,7 @@ Voltamos para a casa abandonada arrastando Zorg e carregando Manjiro. Ninguém d
 
 *Notas à margem:*
 
-||Elina não tirou os olhos do prato o jantar inteiro. Os pais dela sumiram numa noite, levados para algum lugar que ninguém sabe dizer qual é. Elenor foi a única que falou com ela. Eu não. Fiquei olhando a corva. Ela tem mais ou menos a idade que eu tinha quando levaram os meus.||
+||Elina não tirou os olhos do prato o jantar inteiro. Os pais dela sumiram numa noite, levados para algum lugar que ninguém sabe dizer qual é. Voss e Elenor tentaram falar com ela. Eu não. Fiquei olhando a corva. Ela tem mais ou menos a idade que eu tinha quando levaram os meus.||
 
 ||Quando Elenor falou dos livros, fiquei feliz. Simplesmente feliz, sem segunda intenção, e passei o resto da noite procurando a intenção dela por não saber o que fazer com isso.||
 
