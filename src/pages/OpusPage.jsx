@@ -110,6 +110,10 @@ function Flask({ phase }) {
 }
 
 function Protocol({ quest, truthMode, onClick }) {
+  // Obra concluída abre lacrada: o selo de cera se parte com o som de lacre.
+  useEffect(() => {
+    if (isDone(quest)) play("selo");
+  }, [quest]);
   const reagents = list(quest.ver);
   const records = list(quest.visto)
     .map((s) => DIARY.find((d) => d.slug === s))
@@ -124,9 +128,15 @@ function Protocol({ quest, truthMode, onClick }) {
     );
 
   return (
-    <article className="tomo-pagina verbete protocolo" onClick={onClick}>
+    <article className="tomo-pagina verbete protocolo relative" onClick={onClick}>
+      {isDone(quest) && (
+        <div className="lacre" title="Obra concluída" aria-label="Selo de obra concluída, partido">
+          <span className="cera lacre-metade esquerda">🜔</span>
+          <span className="cera lacre-metade direita">🜔</span>
+        </div>
+      )}
       <p className="tomo-meta">Protocolo de obra · {quest.phase.label}</p>
-      <h2 className="verbete-titulo mt-1">{quest.title}</h2>
+      <h2 className={`verbete-titulo mt-1 ${isDone(quest) ? "pr-16" : ""}`}>{quest.title}</h2>
 
       <ol className="trilha-fases mt-3" aria-label={`Fase atual: ${quest.phase.label}`}>
         {PHASES.map((p, i) => (

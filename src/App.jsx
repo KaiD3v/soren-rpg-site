@@ -12,6 +12,7 @@ import MapsPage from "./pages/MapsPage.jsx";
 import DiaryPage from "./pages/DiaryPage.jsx";
 import CompendiumPage from "./pages/CompendiumPage.jsx";
 import OpusPage from "./pages/OpusPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 const VEIL_SWAP_MS = 480; // a lente troca quando o véu cobre a tela (pico da animação .veu-luz)
 const VEIL_END_MS = 1150;
@@ -91,7 +92,7 @@ export default function App() {
             <Route path="/diario/:slug?" element={<DiaryPage />} />
             <Route path="/compendio/:secao?/:slug?" element={<CompendiumPage truthMode={truthMode} />} />
             <Route path="/opus/:slug?" element={<OpusPage truthMode={truthMode} />} />
-            <Route path="*" element={home} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
       </div>

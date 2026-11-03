@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router";
 import Bell from "./Bell.jsx";
 import Pendant from "./Pendant.jsx";
+import Search from "./Search.jsx";
 import { isMuted, setMuted } from "../lib/sound.js";
 
 // Gavetas do arquivo, na ordem dos fólios. A cota aparece na linha de catalogação.
@@ -19,7 +20,7 @@ const isOpen = (drawer, path) => (drawer.to === "/" ? path === "/" : path.starts
 
 export default function TopBar({ truthMode, onToggleTruth }) {
   const { pathname } = useLocation();
-  const current = DRAWERS.find((d) => isOpen(d, pathname)) ?? DRAWERS[0];
+  const current = DRAWERS.find((d) => isOpen(d, pathname)) ?? { folio: "?", label: "Página arrancada" };
   const [menuOpen, setMenuOpen] = useState(false);
   const [muted, setMutedState] = useState(isMuted);
   const toggleSound = () => {
@@ -65,8 +66,9 @@ export default function TopBar({ truthMode, onToggleTruth }) {
           <span className="text-[15px] leading-tight">{current.label}</span>
         </button>
 
-        {/* Varão de ferro: a sineta (som) e o colar pendem lado a lado */}
+        {/* Varão de ferro: a lupa (índice), a sineta (som) e o colar pendem lado a lado */}
         <div className="varao flex items-start gap-4 shrink-0">
+          <Search truthMode={truthMode} />
           <button
             onClick={toggleSound}
             aria-pressed={!muted}
