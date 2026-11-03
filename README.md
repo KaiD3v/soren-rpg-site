@@ -48,6 +48,7 @@ A barra superior é um gaveteiro: cada seção é uma gaveta com seu fólio.
 | IV | **Atlas** | As plantas da cidadela, com selos de cera marcando cada sala. |
 | V | **Diário** | O caderno de campo de Soren, um livro de verdade com capa de couro e páginas que viram. |
 | VI | **Compêndio** | O *Liber Alkahest*: alquimia, pessoas, criaturas e o mistério do pacto. |
+| VII | **Opus** | As quests como experimentos na bancada: cada frasco mostra em que fase da Grande Obra a missão está. |
 
 <p align="center">
   <img src="public/assets/ato-1.webp" alt="Ato I: o laboratório de Elian e Lyra" width="19%" />
@@ -205,6 +206,34 @@ O link "Desdobrar o quadro de investigação", no índice de O Pacto, abre `/com
 - Fios de pistas descartadas ficam apagados. Na Ressonância, os fios viram luz.
 - Os cartões se distribuem sozinhos numa elipse. Para fixar a posição, use `quadro: x, y` (em %, por exemplo `quadro: 20, 35`).
 - `quadro` é um nome reservado: não crie um verbete com esse slug no Pacto.
+
+## Escrevendo uma quest (Opus)
+
+Cada quest é um experimento na bancada. Crie `src/opus/<slug>.md`; a URL fica `/opus/<slug>`.
+
+```md
+---
+title: Os Desaparecidos do Charco
+fase: albedo
+contratante: [[velarian-voss|Sir Velarian Voss]]
+recompensa: Nox (já paga); uma semana de estalagem
+hipotese: O frio é a assinatura.
+motivo: Aceitei pela corva e pela hospedagem.
+verdadeiro: Elina tem a idade que eu tinha quando levaram os meus.
+visto: charco-negro
+ver: velarian-voss, sirius
+---
+
+- [x] Ouvir os relatos da taverna
+- [ ] Interrogar a curandeira
+```
+
+- `fase`: `nigredo` (recebida), `albedo` (pistas reunidas), `citrinitas` (causa identificada) ou `rubedo` (concluída). Define a cor e o nível do líquido no frasco.
+- Em `rubedo`, a obra sai da bancada e vira um **cristal** na prateleira. Use `residuo` para uma quest que falhou: o frasco fica turvo, com o precipitado no fundo.
+- `motivo` aparece na Máscara e `verdadeiro` na Ressonância.
+- `- [x]` e `- [ ]` viram o procedimento, com os passos feitos riscados à pena.
+- `ver` lista os reagentes (verbetes do compêndio) e `visto` as sessões do diário.
+- A obra mais adiantada abre primeiro.
 
 ---
 

@@ -12,6 +12,7 @@ const DRAWERS = [
   { to: "/mapas", folio: "IV", label: "Atlas" },
   { to: "/diario", folio: "V", label: "Diário" },
   { to: "/compendio", folio: "VI", label: "Compêndio" },
+  { to: "/opus", folio: "VII", label: "Opus" },
 ];
 
 const isOpen = (drawer, path) => (drawer.to === "/" ? path === "/" : path.startsWith(drawer.to));
@@ -44,7 +45,7 @@ export default function TopBar({ truthMode, onToggleTruth }) {
           🜍
         </NavLink>
 
-        <nav aria-label="Arquivo" className="hidden md:flex flex-wrap justify-center gap-x-3 gap-y-2">
+        <nav aria-label="Arquivo" className="hidden lg:flex flex-wrap justify-center gap-x-2 xl:gap-x-3 gap-y-2">
           {DRAWERS.map((d) => (
             <NavLink key={d.to} to={d.to} end={d.to === "/"} className={drawerClass(d)}>
               <span className="folio">Fól. {d.folio}</span>
@@ -58,7 +59,7 @@ export default function TopBar({ truthMode, onToggleTruth }) {
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
           aria-controls="gaveteiro"
-          className="gaveta aberta md:hidden flex-1 max-w-[14rem] cursor-pointer"
+          className="gaveta aberta lg:hidden flex-1 max-w-[14rem] cursor-pointer"
         >
           <span className="folio">Fól. {current.folio} {menuOpen ? "▴" : "▾"}</span>
           <span className="text-[15px] leading-tight">{current.label}</span>
@@ -77,14 +78,14 @@ export default function TopBar({ truthMode, onToggleTruth }) {
           </button>
           <button onClick={onToggleTruth} className="gancho flex items-start gap-2 font-sc text-sm text-dim hover:text-ink cursor-pointer shrink-0">
             <Pendant lit={truthMode} width={18} />
-            <span className="hidden sm:inline">{truthMode ? "Soltar o colar" : "Tocar o colar"}</span>
-            <span className="sr-only sm:hidden">{truthMode ? "Soltar o colar" : "Tocar o colar"}</span>
+            <span className="hidden sm:inline lg:hidden xl:inline">{truthMode ? "Soltar o colar" : "Tocar o colar"}</span>
+            <span className="sr-only sm:hidden lg:inline xl:hidden">{truthMode ? "Soltar o colar" : "Tocar o colar"}</span>
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <nav id="gaveteiro" aria-label="Arquivo" className="gaveteiro md:hidden">
+        <nav id="gaveteiro" aria-label="Arquivo" className="gaveteiro lg:hidden">
           {DRAWERS.map((d) => (
             <NavLink key={d.to} to={d.to} end={d.to === "/"} className={`${drawerClass(d)} gaveta-linha`}>
               <span className="folio w-14 text-left">Fól. {d.folio}</span>
@@ -94,7 +95,7 @@ export default function TopBar({ truthMode, onToggleTruth }) {
         </nav>
       )}
 
-      <p className="catalogo hidden md:block" aria-live="polite">
+      <p className="catalogo hidden lg:block" aria-live="polite">
         Arquivo Arcano de Soren Alkahest, cota ALK-{current.folio}: {current.label}
       </p>
     </header>
