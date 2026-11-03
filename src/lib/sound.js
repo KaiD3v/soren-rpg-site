@@ -38,7 +38,7 @@ const THEMES = {
   mascara: "/musica/house-of-ashen-vows.mp3", // House of Ashen Vows
   verdade: "/musica/lost-lullaby.mp3", // Lost Lullaby
 };
-const MUSIC_VOLUME = 0.22;
+const MUSIC_VOLUME = 0.11;
 const CROSSFADE_MS = 1800;
 const themes = {};
 let lens = "mascara";

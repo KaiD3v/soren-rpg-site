@@ -38,13 +38,13 @@ Na sala de jantar havia um cão preto, enorme e de pelo espesso, e uma corva tã
 
 O banquete foi excelente. Voss, decepcionante. Passou a noite discorrendo sobre a gastronomia do pântano: o tempero do peixe, a época certa da enguia. Quando perguntei sobre a estátua, o espelho e os animais, respondeu: "Ah, não sei. Isso está na minha família há muito tempo, só mantenho por causa disso." Um homem que tem em casa um idioma morto e prefere falar de enguias. Minha opinião sobre ele caiu no mesmo jantar em que se formou.
 
-Só uma vez a conversa dele valeu a pena, e foi por acaso. O prato principal era o *Faisão Negro do Pântano*, uma ave da região que imita a voz de pessoas, atrai quem a escuta para longe da trilha e então ataca. Voss contou isso como curiosidade de cardápio, entre um gole e outro. Uma ave predadora que usa a voz humana como isca, e o homem só sabe dizer que a carne é macia. É, de fato. Mas o que me interessa são as penas. Uma criatura que reproduz sons com essa fidelidade deve carregar alguma propriedade ressonante no corpo, e plumas costumam ser bons condutores para preparados que alteram ou projetam a voz. Se a ave é comum por aqui, conseguir algumas não deve ser difícil. Difícil vai ser sobreviver à isca.
+Só uma vez a conversa dele valeu a pena, e foi por acaso. O prato principal era o *[[faisao-negro-do-pantano|Faisão Negro do Pântano]]*, uma ave da região que imita a voz de pessoas, atrai quem a escuta para longe da trilha e então ataca. Voss contou isso como curiosidade de cardápio, entre um gole e outro. Uma ave predadora que usa a voz humana como isca, e o homem só sabe dizer que a carne é macia. É, de fato. Mas o que me interessa são as [[penas-de-faisao-negro|penas]]. Uma criatura que reproduz sons com essa fidelidade deve carregar alguma propriedade ressonante no corpo, e plumas costumam ser bons condutores para preparados que alteram ou projetam a voz. Se a ave é comum por aqui, conseguir algumas não deve ser difícil. Difícil vai ser sobreviver à isca.
 
 ![Faisão Negro do Pântano. A cauda é longa demais para uma ave que caça no chão; serve para outra coisa](/assets/diario/faisao-esboco.webp)
 
 **O pedido.** Depois da sobremesa, Voss revelou o motivo do convite. Há alguns anos, pessoas desaparecem nos vilarejos da região. O caso mais recente foram os pais de Elina Corvin, uma menina que esteve à mesa conosco a noite toda, chorando em silêncio. Foi o próprio Voss quem a chamou para jantar conosco, e ele tentou animá-la mais de uma vez entre um prato e outro. Elenor sentou-se ao lado dela e passou boa parte do jantar conversando baixo com a menina. Não ouvi o que disseram. Elina parou de chorar, o que já é mais do que eu teria conseguido.
 
-O grupo aceitou ajudar. Eu impus uma condição: quero a corva. Voss concordou "por um bem maior". Ainda nos deu uma semana de hospedagem e comida numa de suas estalagens. Ela agora viaja comigo e se chama Nox. ||É o primeiro ser vivo que tenho por escolha própria, e não por designação da Casa.||
+O grupo aceitou ajudar. Eu impus uma condição: quero a corva. Voss concordou "por um bem maior". Ainda nos deu uma semana de hospedagem e comida numa de suas estalagens. Ela agora viaja comigo e se chama [[nox|Nox]]. ||É o primeiro ser vivo que tenho por escolha própria, e não por designação da Casa.||
 
 ![Nox, na primeira noite, já de olho na janela](/assets/diario/nox-esboco.webp)
 
@@ -64,7 +64,7 @@ No Vilarejo dos Pescadores, [[sirius|Sirius]] me repassou o que tinha ouvido de 
 - A casa desse homem está abandonada. Sirius e Elenor a vasculharam e não encontraram nada.
 - Um garotinho afirma ter visto uma criatura estranha depois que uma amiga sumiu. Esse sumiço foi de dia, o que não combina com o resto.
 
-Fui com Sirius falar com o garoto (Elenor tinha ido fazer outra coisa e não voltou; o resto do grupo também sumiu, cada um para um lado). O menino nos mostrou um desenho. Traço infantil, feito com medo: uma fera maior que as árvores, juba eriçada, olhos vermelhos, asas, garras e uma cauda cheia de espinhos. Crianças exageram tudo o que as assusta. Descontado o exagero, sobram corpo de felino, asas e garras de ave de rapina. Um grifo, ou o que uma criança faria de um. Ninguém desenha com tanta insistência algo que nunca viu.
+Fui com Sirius falar com o garoto (Elenor tinha ido fazer outra coisa e não voltou; o resto do grupo também sumiu, cada um para um lado). O menino nos mostrou um desenho. Traço infantil, feito com medo: uma fera maior que as árvores, juba eriçada, olhos vermelhos, asas, garras e uma cauda cheia de espinhos. Crianças exageram tudo o que as assusta. Descontado o exagero, sobram corpo de felino, asas e garras de ave de rapina. Um [[grifo]], ou o que uma criança faria de um. Ninguém desenha com tanta insistência algo que nunca viu.
 
 ![O desenho do menino, que ele me deixou levar](/assets/diario/grifo-do-menino.webp)
 
