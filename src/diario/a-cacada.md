@@ -25,4 +25,4 @@ Ironia que não deixo passar: Lazare mandou o Enxofre caçar alguém que nasceu 
 
 ||Eles cresceram nos mesmos subsolos que eu. Talvez tenham conhecido Elian e Lyra. Talvez tenham ajudado a carregá-los até o altar. Não sei qual das duas possibilidades me tira mais o sono.||
 
-||Vou sentir falta da neve. Não pretendia escrever isso.||
+||Vou sentir falta da neve. Não pretendia escrever isso.||J

@@ -107,7 +107,7 @@ export default function DiaryPage() {
         {size && (
           <>
             {/* Medição invisível: quantas páginas cada entrada ocupa no tamanho atual */}
-            <div ref={measureRef} aria-hidden="true" className="absolute invisible pointer-events-none -left-[9999px] top-0">
+            <div ref={measureRef} aria-hidden="true" className="absolute invisible pointer-events-none -left-[9999px] top-0 h-0 overflow-hidden">
               {ENTRIES.map((e) => (
                 <div key={e.slug} className="pagina" style={{ width: size.pw, height: size.ph }}>
                   <Flow entry={e} column={0} />
