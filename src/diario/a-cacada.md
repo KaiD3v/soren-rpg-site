@@ -1,6 +1,6 @@
 ---
 session: Prólogo III
-date: 03-00-0000
+date: 01-01-2026
 title: A Caçada Começou
 location: Em Exílio pelo Mundo, Kharvórn
 ---

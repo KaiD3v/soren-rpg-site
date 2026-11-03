@@ -2,6 +2,7 @@
 session: Sessão 1
 title: O Que o Frio Leva
 location: Charco Negro, Reino de Thaldrin
+date: 01-11-2026
 ---
 
 Duas semanas presos no Charco Negro. A caravana atolou no barro na entrada da região e não saiu mais. Eu avisei, com outras palavras e só para mim mesmo, que carroças eram uma tecnologia indigna de confiança. O pântano concordou comigo.

@@ -1,6 +1,6 @@
 ---
 session: Prólogo II
-date: 01-00-0000
+date: 01-01-2026
 title: O Mundo Externo
 location: Em Exílio pelo Mundo, Kharvórn
 ---
