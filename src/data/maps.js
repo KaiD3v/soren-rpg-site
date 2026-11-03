@@ -1,4 +1,5 @@
-// linkedMapIdx aponta para o índice de outra planta neste array.
+// linkedMapIdx aponta para o índice de outro mapa neste array. `group` separa as plantas da
+// cidadela dos mapas do exílio (desenhados por Soren de memória); `route` é a rota a tinta, em %.
 export const MAPS = [
   {
     id: "full",
@@ -191,5 +192,55 @@ export const MAPS = [
       }
     ],
     image: "/assets/map_sulfur.jpg"
+  },
+  {
+    id: "elaris",
+    group: "exilio",
+    code: "Elaris, o mundo",
+    title: "Elaris",
+    subtitle: "Os reinos fora da cidadela, num mapa de mercador",
+    scale: "Sem escala; comprado de um mercador de caravana",
+    securityLevel: "Longe da cidadela. Não longe o bastante",
+    overview: "Sete reinos e as Terras Sombrias. Comprei este mapa de um mercador e tracei por cima a rota do exílio: das terras frias de Kharvórn, pelos campos de Aurestia, até as florestas do sul de Thaldrin.",
+    sorenMemory: "“Na cidadela, o mundo terminava no último andar da montanha. Aqui ele não termina. Cada vez que desenho um mapa, ele cresce mais um pouco.”",
+    route: [[37.5, 12], [52, 22], [60, 40], [70, 56], [78, 68]],
+    pins: [
+      { num: "1", x: 37.5, y: 9, title: "Kharvórn", areaTag: "Três meses de exílio", desc: "Montanhas do norte e terras frias. Onde aprendi a viver fora da cidadela, vi uma aurora e desenhei a raiz-de-gelo. Onde os cães de Lazare me encontraram." },
+      { num: "2", x: 52, y: 19, title: "Aurestia", areaTag: "Rota da caravana", desc: "Campos do norte e colinas centrais. Atravessei com a caravana sem parar mais do que o necessário." },
+      { num: "3", x: 78, y: 71, title: "Thaldrin", areaTag: "Destino atual", desc: "Florestas do sul e costa selvagem. O mais longe possível da cidadela, ou assim eu pensava.", linkedMapIdx: 5 }
+    ],
+    image: "/assets/map_elaris.webp"
+  },
+  {
+    id: "thaldrin",
+    group: "exilio",
+    code: "Thaldrin",
+    title: "Reino de Thaldrin",
+    subtitle: "Florestas do Sul e Costa Selvagem",
+    scale: "0 a 150 quilômetros, segundo o original",
+    securityLevel: "Território desconhecido; goblins organizados nas matas",
+    overview: "Um reino de florestas fechadas, rios e vilarejos espalhados entre a Mata Profunda e o Coração Verdejante. A caravana entrou pelo norte e atolou no sudeste, no Charco Negro.",
+    sorenMemory: "“Escolhi Thaldrin porque ninguém da Casa Vaelor teria motivo para vir até aqui. Ainda não sei se isso me protege ou só me deixa sozinho.”",
+    pins: [
+      { num: "1", x: 82, y: 66, title: "Vilarejo de Charco Negro", areaTag: "Onde a caravana atolou", desc: "Região pantanosa no sudeste do reino. Duas semanas presos no barro, e agora um contrato com Sir Velarian Voss.", linkedMapIdx: 6 }
+    ],
+    image: "/assets/map_thaldrin.webp"
+  },
+  {
+    id: "charco",
+    group: "exilio",
+    code: "Charco Negro",
+    title: "Charco Negro",
+    subtitle: "Só o que eu vi com os próprios olhos",
+    scale: "De memória, sem medições. O resto do pântano fica em branco",
+    securityLevel: "Desaparecimentos noturnos; goblins na mata; algo que traz o frio",
+    overview: "Desenhei apenas o que conheço: a estrada por onde a caravana veio, o vilarejo da taverna Pé Atolado, a mansão de Voss no alto do rochedo e o Vilarejo dos Pescadores, sobre palafitas. Tudo em volta é pântano que eu ainda não pisei.",
+    sorenMemory: "“Um mapa com mais branco do que tinta. É honesto, pelo menos: é exatamente o quanto eu sei sobre este lugar.”",
+    pins: [
+      { num: "1", x: 38, y: 50, title: "Vilarejo do Charco Negro", areaTag: "Taverna Pé Atolado", desc: "Onde a caravana parou e nunca mais saiu. Peixe com gosto de barro, quartos que rangem e os relatos de Garrick e Amália." },
+      { num: "2", x: 71, y: 15, title: "Mansão Blackmoor", areaTag: "Casa de Sir Velarian Voss", desc: "No alto de um rochedo acima do pântano. A estátua de três figuras, o espelho de ouro e o jantar em que ganhei Nox." },
+      { num: "3", x: 85, y: 41, title: "Vilarejo dos Pescadores", areaTag: "Onde as pessoas somem", desc: "Casas sobre palafitas na beira da água. A casa abandonada do homem que sumiu e voltou, o desenho do grifo e, na mata ao lado, os goblins." }
+    ],
+    image: "/assets/map_charco.webp"
   }
 ];

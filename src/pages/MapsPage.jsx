@@ -3,6 +3,11 @@ import { PageTitle } from "../components/Ornaments.jsx";
 import { MAPS } from "../data/maps.js";
 import { play } from "../lib/sound.js";
 
+const GROUPS = [
+  { id: "cidadela", label: "A Cidadela" },
+  { id: "exilio", label: "O Exílio" },
+];
+
 const SIDE_LEAVES = [
   { id: "selo", label: "Selo" },
   { id: "planta", label: "A planta" },
@@ -26,13 +31,16 @@ export default function MapsPage({ openLightbox }) {
   return (
     <div className="stage:h-full stage:flex stage:flex-col">
       <PageTitle glyph="♁" title="Atlas">
-        As plantas da Casa Vaelor, do cume dourado ao cofre do pacto. Rompa um selo para ler a sala.
+        As plantas da Casa Vaelor e os mapas do exílio. Rompa um selo para ler o lugar.
       </PageTitle>
 
       <div className="grid gap-10 stage:flex-1 stage:min-h-0 stage:grid-cols-[minmax(0,1fr)_380px] stage:items-center">
         <div className="flex flex-col items-center gap-4 stage:min-h-0">
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Plantas">
-            {MAPS.map((m, idx) => (
+          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2" aria-label="Mapas">
+            {GROUPS.map((g) => (
+              <div key={g.id} className="flex flex-wrap items-baseline justify-center gap-x-5 gap-y-1">
+                <span className="rotulo text-xs">{g.label}</span>
+            {MAPS.map((m, idx) => (m.group ?? "cidadela") === g.id && (
               <button
                 key={m.id}
                 onClick={() => selectMap(idx)}
@@ -45,10 +53,33 @@ export default function MapsPage({ openLightbox }) {
                 {m.code}
               </button>
             ))}
+              </div>
+            ))}
           </nav>
 
           <figure className="relative max-w-4xl stage:w-fit border border-metal rounded-lens overflow-hidden bg-abyss shadow-[0_30px_80px_-20px_#000]">
             <img src={map.image} alt={map.title} className="block w-full h-auto stage:w-auto stage:max-w-full stage:max-h-[calc(100dvh-280px)] select-none" />
+            {map.route && (
+              // Rota do exílio, a tinta por cima do mapa
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+                {/* Contorno escuro + traço claro: a rota aparece sobre qualquer cor do mapa */}
+                {[
+                  { stroke: "#1a0f08", width: 5, dash: undefined },
+                  { stroke: "#f3e3c0", width: 2.5, dash: "7 5" },
+                ].map((l) => (
+                  <polyline
+                    key={l.stroke}
+                    points={map.route.map(([x, y]) => `${x},${y}`).join(" ")}
+                    fill="none"
+                    stroke={l.stroke}
+                    strokeWidth={l.width}
+                    strokeDasharray={l.dash}
+                    strokeLinecap="round"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ))}
+              </svg>
+            )}
             {map.pins.map((p, idx) => (
               <button
                 key={p.num}
@@ -101,11 +132,11 @@ export default function MapsPage({ openLightbox }) {
                 <p className="text-dim leading-relaxed mt-3">{pin.desc}</p>
                 {pin.linkedMapIdx !== undefined && (
                   <button onClick={() => selectMap(pin.linkedMapIdx)} className="botao mt-4 text-sm">
-                    Ver a planta desta área
+                    Ver o mapa desta área
                   </button>
                 )}
 
-                <h3 className="rotulo text-sm mt-6 mb-1">Salas desta planta</h3>
+                <h3 className="rotulo text-sm mt-6 mb-1">Selos deste mapa</h3>
                 <ol>
                   {map.pins.map((p, idx) => (
                     <li key={p.num}>

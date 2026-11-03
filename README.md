@@ -45,7 +45,7 @@ A barra superior é um gaveteiro: cada seção é uma gaveta com seu fólio.
 | I | **Matriz** | Soren no centro de um círculo de transmutação, ligado aos pais, ao clã e a Lazare. Retrato sob um arco gótico, densidade da alma num frasco e as falas de cada lente. |
 | II | **Crônica** | A história em cinco atos, lida como um códice de duas colunas, com uma iluminura por ato. |
 | III | **Casa Vaelor** | A montanha do clã, onde cada estrato é uma casta. |
-| IV | **Atlas** | As plantas da cidadela, com selos de cera marcando cada sala. |
+| IV | **Atlas** | As plantas da cidadela e os mapas do exílio (Elaris, Thaldrin e o Charco Negro, este desenhado por Soren de memória), com selos de cera marcando cada lugar. |
 | V | **Diário** | O caderno de campo de Soren, um livro de verdade com capa de couro e páginas que viram. |
 | VI | **Compêndio** | O *Liber Alkahest*: alquimia, pessoas, criaturas e o mistério do pacto. |
 | VII | **Opus** | As quests como experimentos na bancada: cada frasco mostra em que fase da Grande Obra a missão está. |
