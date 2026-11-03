@@ -8,12 +8,15 @@ src, paper_path, out = sys.argv[1], sys.argv[2], sys.argv[3]
 
 img = Image.open(src).convert("L")
 img = img.resize((img.width * 900 // img.height, 900), Image.LANCZOS)
+# Suaviza antes do traço: o efeito realça blocos de compressão (JPEG/WebP) em áreas escuras e lisas.
+img = img.filter(ImageFilter.MedianFilter(3)).filter(ImageFilter.GaussianBlur(0.8))
 gray = np.asarray(ImageOps.autocontrast(img, cutoff=1), dtype=np.float32)
 
 # Traço: color dodge da imagem com o negativo desfocado. Raio pequeno = linha fina, raio grande = sombreado.
 def dodge(radius):
     blur = np.asarray(Image.fromarray(255 - gray.astype(np.uint8)).filter(ImageFilter.GaussianBlur(radius)), dtype=np.float32)
-    return np.clip(gray * 255.0 / np.maximum(255.0 - blur, 1.0), 0, 255)
+    # Piso no divisor: em áreas quase pretas a divisão por ~0 amplificaria ruído; assim viram sombra sólida.
+    return np.clip(gray * 255.0 / np.maximum(255.0 - blur, 28.0), 0, 255)
 
 lines = dodge(4)
 shade = dodge(22)
