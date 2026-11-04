@@ -875,7 +875,9 @@ body::after {
 
 /* Cada entrada flui em colunas da altura da página; cada página mostra uma coluna */
 .fluxo {
-  height: 100%;
+  /* Altura explícita (página menos o padding de .pagina: 8% em cima, 10% embaixo). Com height: 100%
+     o Safari do iPhone não resolve a altura dentro da face absoluta e o texto escorre numa coluna só. */
+  height: calc(var(--ph) * 0.82);
   column-count: 1;
   column-gap: 80px;
   column-fill: auto;
