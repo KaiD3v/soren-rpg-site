@@ -121,7 +121,7 @@ function OrbitNode({ id, left, top, label, big, selected, onSelect }) {
       className={`no-orbita absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center ${big ? "w-[23%] z-10" : "w-[15%]"}`}
     >
       <span className="anel-retrato block w-full aspect-square rounded-full overflow-hidden bg-abyss">
-        <img src={NODES[id].image} alt="" className="w-full h-full object-cover object-top" />
+        <img decoding="async" src={NODES[id].image} alt="" className="w-full h-full object-cover object-top" />
       </span>
       <span className="nome-no mt-1.5 px-2 font-sc text-sm whitespace-nowrap bg-abyss/80 rounded-lens transition-colors">{label}</span>
     </button>
@@ -139,9 +139,9 @@ function Portrait({ data, truthMode, openLightbox }) {
         aria-label={`Ampliar o retrato de ${data.name}`}
       >
         <span className="arco relative block w-full h-full bg-abyss">
-          <img src={data.image} alt={data.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+          <img decoding="async" src={data.image} alt={data.name} className="absolute inset-0 w-full h-full object-cover object-top" />
           {data.imageTruth && (
-            <img
+            <img decoding="async"
               src={data.imageTruth}
               alt=""
               className={`absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-1000 ${showTruth ? "opacity-100" : "opacity-0"}`}

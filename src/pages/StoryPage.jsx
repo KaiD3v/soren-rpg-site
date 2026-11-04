@@ -37,7 +37,7 @@ export default function StoryPage({ openLightbox }) {
           aria-label={`Ampliar a iluminura do ${act.act}`}
           className="block w-full max-w-[260px] mx-auto stage:col-start-3 stage:row-start-1 cursor-zoom-in"
         >
-          <img key={act.image} src={act.image} alt="" className="iluminura w-full h-auto" />
+          <img decoding="async" key={act.image} src={act.image} alt="" className="iluminura w-full h-auto" />
         </button>
 
         <article className="stage:col-start-2 stage:row-start-1 stage:max-h-full stage:min-h-0 stage:flex stage:flex-col">

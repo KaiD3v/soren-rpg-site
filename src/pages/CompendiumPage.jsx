@@ -187,7 +187,7 @@ function EntrySpread({ entry, section, truthMode }) {
 
       {section.id === "pessoas" && (entry.casta || entry.alma) && (
         <div className="veredito mt-3">
-          {caste && <img src={caste.emblem} alt="" className="w-10 h-10 rounded-full shrink-0" />}
+          {caste && <img decoding="async" src={caste.emblem} alt="" className="w-10 h-10 rounded-full shrink-0" />}
           <div>
             <div className="tomo-meta">Veredito da alma</div>
             <div>
@@ -247,7 +247,7 @@ function EntrySpread({ entry, section, truthMode }) {
         <section className="tomo-pagina esquerda verbete flex flex-col">
           {backLink}
           <span className="esboco prancha">
-            <img src={entry.imagem.replace(/^\/public\//, "/")} alt={entry.title} />
+            <img decoding="async" src={entry.imagem.replace(/^\/public\//, "/")} alt={entry.title} />
           </span>
           {heading}
         </section>

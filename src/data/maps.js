@@ -48,7 +48,7 @@ export const MAPS = [
         linkedMapIdx: 3
       }
     ],
-    image: "/assets/map_full.jpg"
+    image: "/assets/map_full.webp"
   },
   {
     id: "ether",
@@ -93,7 +93,7 @@ export const MAPS = [
         desc: "O único acesso físico a partir das Torres de Mercúrio, guardado por pontes flutuantes retráteis."
       }
     ],
-    image: "/assets/map_ether.jpg"
+    image: "/assets/map_ether.webp"
   },
   {
     id: "mercury",
@@ -146,7 +146,7 @@ export const MAPS = [
         desc: "Grandes colunas de cobre e vidro que refinam os reagentes brutos enviados das minas de enxofre abaixo."
       }
     ],
-    image: "/assets/map_mercury.jpg"
+    image: "/assets/map_mercury.webp"
   },
   {
     id: "sulfur",
@@ -191,7 +191,7 @@ export const MAPS = [
         desc: "Câmara octogonal com dois círculos vermelhos de oferta anímica (onde as almas de Elian e Lyra foram pagas ao Inferno) ligados ao altar central onde o sangue de Soren foi reescrito como Tiefling."
       }
     ],
-    image: "/assets/map_sulfur.jpg"
+    image: "/assets/map_sulfur.webp"
   },
   {
     id: "elaris",

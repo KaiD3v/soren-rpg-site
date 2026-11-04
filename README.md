@@ -18,7 +18,7 @@ Tudo no site existe em duas versões. A **Máscara Racional** é o que Soren mos
 
 <table>
   <tr>
-    <td align="center" width="50%"><img src="public/assets/soren.jpg" alt="Soren na Máscara: arrogante, com fogo infernal na mão" width="100%" /><br /><sub><b>Máscara</b>: o que ele diz ao mundo</sub></td>
+    <td align="center" width="50%"><img src="public/assets/soren.webp" alt="Soren na Máscara: arrogante, com fogo infernal na mão" width="100%" /><br /><sub><b>Máscara</b>: o que ele diz ao mundo</sub></td>
     <td align="center" width="50%"><img src="public/assets/soren-verdade.webp" alt="Soren na Ressonância: olhar baixo, segurando o colar" width="100%" /><br /><sub><b>Ressonância</b>: o que o colar guarda</sub></td>
   </tr>
 </table>
@@ -27,9 +27,9 @@ A troca muda a paleta, as fontes, os retratos, as citações, a inscrição do c
 
 <table>
   <tr>
-    <td align="center"><img src="public/assets/villain.jpg" alt="Lazare Vaelor diante do círculo rúnico" width="100%" /><br /><sub>Lazare, na Máscara</sub></td>
+    <td align="center"><img src="public/assets/villain.webp" alt="Lazare Vaelor diante do círculo rúnico" width="100%" /><br /><sub>Lazare, na Máscara</sub></td>
     <td align="center"><img src="public/assets/vilao-verdade.webp" alt="Lazare com Elian e Lyra acorrentados no círculo" width="100%" /><br /><sub>Lazare, na Ressonância</sub></td>
-    <td align="center"><img src="public/assets/clan.jpg" alt="A cidadela da Casa Vaelor" width="100%" /><br /><sub>A Casa Vaelor</sub></td>
+    <td align="center"><img src="public/assets/clan.webp" alt="A cidadela da Casa Vaelor" width="100%" /><br /><sub>A Casa Vaelor</sub></td>
     <td align="center"><img src="public/assets/cla-verdade.webp" alt="A cidadela com almas subindo do cofre do pacto" width="100%" /><br /><sub>O que sustenta a Casa</sub></td>
   </tr>
 </table>
@@ -195,8 +195,18 @@ Comuns a todas:
 Para fazer uma versão "desenho a lápis" de uma arte existente (precisa de Python com Pillow e NumPy):
 
 ```bash
-python tools/esboco_lapis.py public/assets/villain.jpg public/assets/textura-pergaminho.webp public/assets/compendio/lazare-esboco.webp
+python tools/esboco_lapis.py public/assets/villain.webp public/assets/textura-pergaminho.webp public/assets/compendio/lazare-esboco.webp
 ```
+
+### Imagens novas
+
+Artes geradas costumam vir com 1 a 2 MB. Antes de usar, reduza para o tamanho em que aparecem e converta para WebP (o original não-WebP é apagado; troque `.jpg`/`.png` por `.webp` nas referências):
+
+```bash
+python tools/otimizar_imagens.py 900 70 public/assets/compendio/novo-esboco.webp
+```
+
+Lado maior: 900 para esboços, 960 para retratos, 1400 para mapas. Detalhes e medições em `docs/OTIMIZACAO.md`.
 
 ### Quadro de investigação
 

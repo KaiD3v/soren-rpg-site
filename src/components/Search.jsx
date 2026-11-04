@@ -1,9 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { search } from "../lib/busca.js";
-import { ENTRIES as VERBETES, SECTIONS } from "../lib/compendium.js";
-import { ENTRIES as DIARY } from "../lib/diary.js";
-import { QUESTS } from "../lib/opus.js";
 
 // Texto puro de um HTML. Na Máscara, a tinta invisível fica de fora: a busca não revela o que o colar esconde.
 function plain(html, truthMode) {
@@ -12,7 +9,13 @@ function plain(html, truthMode) {
   return doc.body.textContent.replace(/\s+/g, " ").trim();
 }
 
-function buildIndex(truthMode) {
+// Os textos só são baixados quando o índice é aberto pela primeira vez.
+async function buildIndex(truthMode) {
+  const [{ ENTRIES: VERBETES, SECTIONS }, { ENTRIES: DIARY }, { QUESTS }] = await Promise.all([
+    import("../lib/compendium.js"),
+    import("../lib/diary.js"),
+    import("../lib/opus.js"),
+  ]);
   const sectionLabel = Object.fromEntries(SECTIONS.map((s) => [s.id, s.label]));
   return [
     ...DIARY.map((e) => ({ kind: `Diário · ${e.session}`, title: e.title, to: `/diario/${e.slug}`, text: plain(e.html, truthMode) })),
@@ -36,7 +39,10 @@ export default function Search({ truthMode }) {
   const dialogRef = useRef(null);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
-  const index = useMemo(() => (open ? buildIndex(truthMode) : []), [open, truthMode]);
+  const [index, setIndex] = useState([]);
+  useEffect(() => {
+    if (open) buildIndex(truthMode).then(setIndex);
+  }, [open, truthMode]);
   const hits = search(index, query);
 
   const show = () => {

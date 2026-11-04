@@ -23,7 +23,7 @@ const sketch = {
   image({ href: rawHref, text }) {
     const href = rawHref.replace(/^\/public\//, "/");
     const caption = text ? `<span class="esboco-legenda">${escape(text)}</span>` : "";
-    return `<span class="esboco"><img src="${escape(href)}" alt="${escape(text)}" />${caption}</span>`;
+    return `<span class="esboco"><img src="${escape(href)}" alt="${escape(text)}" decoding="async" />${caption}</span>`;
   },
 };
 

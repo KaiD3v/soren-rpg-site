@@ -68,7 +68,7 @@ export default function CastesPage() {
         <article className="painel p-8 stage:p-6">
           <div className="flex items-center gap-4">
             {/* screen apaga o fundo preto do brasão sobre o painel escuro */}
-            <img src={active.emblem} alt="" className="w-20 h-20 shrink-0 rounded-full mix-blend-screen" />
+            <img decoding="async" src={active.emblem} alt="" className="w-20 h-20 shrink-0 rounded-full mix-blend-screen" />
             <div>
               <p className="rotulo text-sm">Estrato {active.tier}</p>
               <h2 className="font-display text-3xl md:text-4xl stage:text-3xl leading-tight">{active.name}</h2>

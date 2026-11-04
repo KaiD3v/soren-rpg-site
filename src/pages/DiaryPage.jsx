@@ -119,10 +119,11 @@ export default function DiaryPage() {
               <div className={`livro-janela ${size.single ? "simples" : ""}`}>
                 <div className="livro" style={{ transform: shift ? `translateX(${shift})` : undefined }}>
                   {leaves.map((leaf, i) => {
+                    // Só as folhas perto da aberta existem: cada uma é uma camada 3D com a entrada inteira
+                    // (e os esboços), e dezenas delas estouram a memória do Safari no iPhone. As demais
+                    // ficariam escondidas atrás destas de qualquer jeito.
+                    if (i < book.current - 2 || i > book.current + 1) return null; // as duas à vista e as que giram ao virar
                     const turned = i < book.current;
-                    // Só as folhas perto da aberta recebem conteúdo: cada página traz a entrada inteira
-                    // (com os esboços), e dezenas delas em camadas 3D estouram a memória do Safari no iPhone.
-                    const near = i === 0 || Math.abs(i - book.current) <= 2;
                     return (
                       <div
                         key={i}
@@ -131,8 +132,8 @@ export default function DiaryPage() {
                         className={`folha ${turned ? "virada" : ""}`}
                         style={{ zIndex: i === book.moving ? leaves.length + 1 : turned ? i : leaves.length - i }}
                       >
-                        <div className={`face ${leaf.cover ? "capa" : "pagina"}`}>{near && leaf.front}</div>
-                        <div className={`face verso ${leaf.cover && !leaf.back ? "contracapa" : "pagina"}`}>{near && leaf.back}</div>
+                        <div className={`face ${leaf.cover ? "capa" : "pagina"}`}>{leaf.front}</div>
+                        <div className={`face verso ${leaf.cover && !leaf.back ? "contracapa" : "pagina"}`}>{leaf.back}</div>
                       </div>
                     );
                   })}
@@ -240,7 +241,8 @@ function useBook(pageCount, single) {
     const target = Math.max(0, Math.min(next, last));
     if (target === current) return;
     play(target === 0 || current === 0 ? "capa" : "pagina"); // abrir/fechar a capa soa diferente de virar folha
-    setMoving(target > current ? current : target);
+    // Num salto (sumário), a folha que giraria nem existe mais: sem folha em movimento.
+    setMoving(Math.abs(target - current) > 2 ? null : target > current ? current : target);
     setCurrent(target);
   };
 

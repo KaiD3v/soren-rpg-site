@@ -13,12 +13,12 @@ test("texto sem || fica intacto", () => {
 test("![legenda](caminho) vira esboço com legenda", () => {
   assert.equal(
     renderMarkdown('![Mapa "rabiscado"](/assets/diario/mapa.webp)'),
-    '<p><span class="esboco"><img src="/assets/diario/mapa.webp" alt="Mapa &quot;rabiscado&quot;" /><span class="esboco-legenda">Mapa &quot;rabiscado&quot;</span></span></p>\n'
+    '<p><span class="esboco"><img src="/assets/diario/mapa.webp" alt="Mapa &quot;rabiscado&quot;" decoding="async" /><span class="esboco-legenda">Mapa &quot;rabiscado&quot;</span></span></p>\n'
   );
 });
 
 test("imagem sem legenda não cria legenda vazia", () => {
-  assert.equal(renderMarkdown("![](/a.webp)"), '<p><span class="esboco"><img src="/a.webp" alt="" /></span></p>\n');
+  assert.equal(renderMarkdown("![](/a.webp)"), '<p><span class="esboco"><img src="/a.webp" alt="" decoding="async" /></span></p>\n');
 });
 
 test("caminho com /public/ é corrigido para a raiz do site", () => {

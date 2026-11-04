@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import Atmosphere from "./components/Atmosphere.jsx";
 import Lightbox from "./components/Lightbox.jsx";
@@ -6,13 +6,15 @@ import PageTransition from "./components/PageTransition.jsx";
 import { play, setMusicLens, startMusic } from "./lib/sound.js";
 import TopBar from "./components/TopBar.jsx";
 import NetworkPage from "./pages/NetworkPage.jsx";
-import StoryPage from "./pages/StoryPage.jsx";
-import CastesPage from "./pages/CastesPage.jsx";
-import MapsPage from "./pages/MapsPage.jsx";
-import DiaryPage from "./pages/DiaryPage.jsx";
-import CompendiumPage from "./pages/CompendiumPage.jsx";
-import OpusPage from "./pages/OpusPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
+
+// Só a Matriz vem no pacote inicial; as outras páginas (e o diário, o compêndio e o Markdown) baixam ao abrir.
+const StoryPage = lazy(() => import("./pages/StoryPage.jsx"));
+const CastesPage = lazy(() => import("./pages/CastesPage.jsx"));
+const MapsPage = lazy(() => import("./pages/MapsPage.jsx"));
+const DiaryPage = lazy(() => import("./pages/DiaryPage.jsx"));
+const CompendiumPage = lazy(() => import("./pages/CompendiumPage.jsx"));
+const OpusPage = lazy(() => import("./pages/OpusPage.jsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
 
 const VEIL_SWAP_MS = 480; // a lente troca quando o véu cobre a tela (pico da animação .veu-luz)
 const VEIL_END_MS = 1150;
@@ -84,16 +86,18 @@ export default function App() {
         <TopBar truthMode={truthMode} onToggleTruth={toggleTruth} />
 
         <main className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-20 stage:flex-1 stage:min-h-0 stage:py-6">
-          <Routes>
-            <Route path="/" element={home} />
-            <Route path="/historia" element={<StoryPage openLightbox={openLightbox} />} />
-            <Route path="/castas" element={<CastesPage />} />
-            <Route path="/mapas" element={<MapsPage openLightbox={openLightbox} />} />
-            <Route path="/diario/:slug?" element={<DiaryPage />} />
-            <Route path="/compendio/:secao?/:slug?" element={<CompendiumPage truthMode={truthMode} />} />
-            <Route path="/opus/:slug?" element={<OpusPage truthMode={truthMode} />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          <Suspense fallback={null}>
+            <Routes>
+              <Route path="/" element={home} />
+              <Route path="/historia" element={<StoryPage openLightbox={openLightbox} />} />
+              <Route path="/castas" element={<CastesPage />} />
+              <Route path="/mapas" element={<MapsPage openLightbox={openLightbox} />} />
+              <Route path="/diario/:slug?" element={<DiaryPage />} />
+              <Route path="/compendio/:secao?/:slug?" element={<CompendiumPage truthMode={truthMode} />} />
+              <Route path="/opus/:slug?" element={<OpusPage truthMode={truthMode} />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
       </div>
 

@@ -201,8 +201,7 @@ body::after {
    ========================================================================== */
 
 .barra {
-  background: linear-gradient(rgb(var(--abyss) / 0.97), rgb(var(--abyss) / 0.8));
-  backdrop-filter: blur(6px);
+  background: linear-gradient(rgb(var(--abyss) / 0.98), rgb(var(--abyss) / 0.92)); /* opaca: sem backdrop-filter, que recalcula o desfoque a cada rolagem */
   border-bottom: 1px solid rgb(var(--line) / 0.6);
 }
 
@@ -1536,9 +1535,8 @@ span.borrao {
   height: 26px;
   margin-left: -8px;
   border-radius: 50%;
-  background: radial-gradient(currentColor, transparent 70%);
+  background: radial-gradient(currentColor, transparent 65%); /* sem filter: blur, caro de animar */
   opacity: 0;
-  filter: blur(4px);
   animation: vapor 3.2s ease-out infinite;
 }
 
