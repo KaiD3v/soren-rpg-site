@@ -120,6 +120,9 @@ export default function DiaryPage() {
                 <div className="livro" style={{ transform: shift ? `translateX(${shift})` : undefined }}>
                   {leaves.map((leaf, i) => {
                     const turned = i < book.current;
+                    // Só as folhas perto da aberta recebem conteúdo: cada página traz a entrada inteira
+                    // (com os esboços), e dezenas delas em camadas 3D estouram a memória do Safari no iPhone.
+                    const near = i === 0 || Math.abs(i - book.current) <= 2;
                     return (
                       <div
                         key={i}
@@ -128,8 +131,8 @@ export default function DiaryPage() {
                         className={`folha ${turned ? "virada" : ""}`}
                         style={{ zIndex: i === book.moving ? leaves.length + 1 : turned ? i : leaves.length - i }}
                       >
-                        <div className={`face ${leaf.cover ? "capa" : "pagina"}`}>{leaf.front}</div>
-                        <div className={`face verso ${leaf.cover && !leaf.back ? "contracapa" : "pagina"}`}>{leaf.back}</div>
+                        <div className={`face ${leaf.cover ? "capa" : "pagina"}`}>{near && leaf.front}</div>
+                        <div className={`face verso ${leaf.cover && !leaf.back ? "contracapa" : "pagina"}`}>{near && leaf.back}</div>
                       </div>
                     );
                   })}
